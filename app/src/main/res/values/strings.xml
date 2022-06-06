@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MedTech</string>
+    <string name="app_name">My Baby</string>
     <string name="phone_hint">+996 (000) 000000</string>
     <string name="authorization">Авторизация</string>
     <string name="type_number">Введите номер телефона:</string>
