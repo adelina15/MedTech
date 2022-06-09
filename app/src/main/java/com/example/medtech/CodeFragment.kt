@@ -39,8 +39,8 @@ class CodeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         auth = FirebaseAuth.getInstance()
-//        binding.phoneNumber.text = number
-//        startTimer()
+        binding.number.text = number
+        startTimer()
 
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -64,6 +64,7 @@ class CodeFragment : Fragment() {
             override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
                 super.onCodeSent(p0, p1)
                 verificationCode = p0
+                resendToken = p1
                 Toast.makeText(requireContext(), "Сообщение отправленно", Toast.LENGTH_LONG).show()
             }
         }
@@ -77,14 +78,14 @@ class CodeFragment : Fragment() {
                 val credential  = PhoneAuthProvider.getCredential(verificationCode, code)
                 signInWithPhoneAuthCredential(credential)
             }else{
-                Toast.makeText(requireContext(),"Enter OTP", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Введите код", Toast.LENGTH_SHORT).show()
             }
         }
 
-//        binding.sendAgainButton.setOnClickListener {
-//            resendOTP(requireActivity(), number)
-//            startTimer()
-//        }
+        binding.sendAgain.setOnClickListener {
+            resendOTP(requireActivity(), number)
+            startTimer()
+        }
 
 //        binding.linearLayoutBack.setOnClickListener {
 //            onBackPressed()
@@ -107,15 +108,15 @@ class CodeFragment : Fragment() {
     // этот метод отправляет код подтверждения и запускает обратный вызов проверки
     // который реализован выше в onCreate
     private fun sendVerificationCode() {
-//        PhoneAuthOptions.newBuilder()
-//            .setActivity(requireActivity())
-//            .setPhoneNumber(number)
-//            .setTimeout(60L, TimeUnit.SECONDS)
-//            .setCallbacks(callbacks)
-//            .build()
-//            .apply {
-//                PhoneAuthProvider.verifyPhoneNumber(this)
-//            }
+        PhoneAuthOptions.newBuilder()
+            .setActivity(requireActivity())
+            .setPhoneNumber(number)
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setCallbacks(callbacks)
+            .build()
+            .apply {
+                PhoneAuthProvider.verifyPhoneNumber(this)
+            }
         val options = PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
             .setPhoneNumber(number)       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -136,8 +137,8 @@ class CodeFragment : Fragment() {
                 // если ошибка входа, отобразится сообщение
                 if (task.exception is FirebaseAuthInvalidCredentialsException) {
                     // Введенный код подтверждения недействителен
-                    Toast.makeText(requireContext(),"Неверный код", Toast.LENGTH_SHORT).show()
-//                    binding.wrongCode.visibility = View.VISIBLE
+                    binding.incorrectCode.visibility = View.VISIBLE
+                    binding.editTextCode.setTextColor(ContextCompat.getColor(requireActivity(), R.color.red))
                 }
             }
         }
@@ -155,16 +156,17 @@ class CodeFragment : Fragment() {
     }
 
     // Зпуск таймера чтобы пользователь за 60 сек ввел смс код
-//    private fun startTimer() {
-//        object : CountDownTimer(60000, 1000) {
-//            override fun onTick(millisUntilFinished: Long) {
-//                binding.timer.text = "Отправить код повторно через: 0:${millisUntilFinished / 1000}"
-//            }
-//
-//            override fun onFinish() {
-//                binding.timer.text = " "
-//                binding.sendAgainButton.visibility = View.VISIBLE
-//            }
-//        }.start()
-//    }
+    private fun startTimer() {
+        object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.timer.text = "Получить код повторно можно через ${millisUntilFinished / 1000} секунд"
+            }
+
+            override fun onFinish() {
+                binding.timer.visibility = View.INVISIBLE
+                binding.noCode.visibility = View.VISIBLE
+                binding.sendAgain.visibility = View.VISIBLE
+            }
+        }.start()
+    }
 }
