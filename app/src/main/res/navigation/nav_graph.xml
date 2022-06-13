@@ -7,21 +7,21 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.medtech.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/main"
         tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/checklistFragment"
-        android:name="com.example.medtech.ChecklistFragment"
-        android:label="fragment_checklist"
-        tools:layout="@layout/fragment_checklist" />
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.example.medtech.ScheduleFragment"
-        android:label="fragment_schedule"
+        android:label="@string/schedule"
         tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/checklistFragment"
+        android:name="com.example.medtech.ChecklistFragment"
+        android:label="@string/checklist"
+        tools:layout="@layout/fragment_checklist" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.medtech.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

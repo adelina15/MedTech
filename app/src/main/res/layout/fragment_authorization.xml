@@ -10,7 +10,7 @@
             android:id="@+id/view"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/rounded_rectangle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:padding="10dp"
+            android:padding="7dp"
             android:text="@string/get_code"
             android:textAppearance="@style/button_text"
             app:backgroundTint="@color/dark_green"
@@ -75,13 +75,13 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_width="212dp"
+            android:layout_height="209dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_icon_green" />
+            app:srcCompat="@drawable/logo_doctor" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
