@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/number"
-            style="@style/inter_black"
+            style="@style/main_text_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/phone_hint"
@@ -77,7 +77,7 @@
 
         <TextView
             android:id="@+id/incorrectCode"
-            style="@style/inter_red"
+            style="@style/text_red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -89,7 +89,7 @@
 
         <TextView
             android:id="@+id/timer"
-            style="@style/inter_green"
+            style="@style/text_green"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -100,10 +100,9 @@
 
         <TextView
             android:id="@+id/noCode"
-            style="@style/inter_gray"
+            style="@style/smaller_main_gray"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="Не получили код?"
             android:visibility="invisible"
@@ -112,7 +111,7 @@
 
         <TextView
             android:id="@+id/sendAgain"
-            style="@style/inter_green"
+            style="@style/text_green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

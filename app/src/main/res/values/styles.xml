@@ -3,9 +3,14 @@
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
-
+    <style name="header">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
     <style name="code_text">
-        <item name="fontFamily">@font/inter_bold</item>
+        <item name="fontFamily">@font/comfortaa</item>
         <item name="android:textSize">24sp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/dark_gray</item>
@@ -33,40 +38,45 @@
         <item name="android:textColor">@color/dark_gray</item>
     </style>
     <style name="text_gray">
-    <item name="fontFamily">@font/inter_bold</item>
+    <item name="fontFamily">@font/comfortaa</item>
     <item name="android:textSize">18sp</item>
     <item name="android:textColor">@color/light_gray</item>
     </style>
-    <style name="inter_black">
-        <item name="fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/black</item>
+    <style name="text_red">
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+    <style name="smaller_main_gray">
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/dark_gray</item>
     </style>
     <style name="text_green">
         <item name="fontFamily">@font/comfortaa</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/dark_green</item>
-    </style>
-    <style name="inter_red">
-        <item name="fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/red</item>
-    </style>
-    <style name="inter_gray">
-        <item name="fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/dark_gray</item>
-    </style>
-    <style name="inter_green">
-        <item name="fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">16sp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/green</item>
     </style>
-    <style name="inter_blue">
-        <item name="fontFamily">@font/inter_bold</item>
+    <style name="text_blue">
+        <item name="fontFamily">@font/comfortaa</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/blue</item>
+    </style>
+    <style name="text_blue1">
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blue1</item>
+    </style>
+    <style name="tiny_text">
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/darker_gray</item>
+    </style>
+    <style name="tiny_text_bold">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/darker_gray</item>
     </style>
 
     <style name="login_button">
