@@ -8,8 +8,8 @@
         android:title="" />
 
     <item
-        android:id="@+id/attention"
-        android:icon="@drawable/ic_attention"
+        android:id="@+id/lamp"
+        android:icon="@drawable/ic_lamp"
         app:showAsAction="ifRoom"
         android:title="" />
 

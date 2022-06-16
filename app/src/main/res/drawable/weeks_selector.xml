@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- selected. This style will be applied when the view is selected -->
+    <item android:drawable="@drawable/blue_box" android:state_checked="true"/>
+    <item android:drawable="@drawable/rounded_box" android:state_checked="false"/>
+
+</selector>

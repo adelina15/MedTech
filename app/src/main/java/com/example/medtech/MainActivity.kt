@@ -9,6 +9,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import com.example.medtech.adapter.WeeksAdapter
 import com.example.medtech.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
