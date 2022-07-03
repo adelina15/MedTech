@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "984703344054",
-    "project_id": "medtech-27d24",
-    "storage_bucket": "medtech-27d24.appspot.com"
+    "project_number": "428644659043",
+    "project_id": "mybaby-20bd7",
+    "storage_bucket": "mybaby-20bd7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:984703344054:android:fc88f2c9218d42ef89b517",
+        "mobilesdk_app_id": "1:428644659043:android:dfb348e79ab73cf79ead56",
         "android_client_info": {
           "package_name": "com.example.medtech"
         }
       },
       "oauth_client": [
         {
-          "client_id": "984703344054-ob2i4s92bsits4609ukkdvdvm3agksqk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.medtech",
-            "certificate_hash": "dc5d1d3436034298a4836dd4a0be7771e11de5f3"
-          }
-        },
-        {
-          "client_id": "984703344054-r3sjukruodmbsrndh34qkf5agbmdo19l.apps.googleusercontent.com",
+          "client_id": "428644659043-v6luem862smsjqv82acrl33utv96btrr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBTgUcrm-jNl92xB-XiVai59cmO_HE080c"
+          "current_key": "AIzaSyDx5wP0--bGi9c6NKGPWop0qzKAnnR5Cxs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "984703344054-r3sjukruodmbsrndh34qkf5agbmdo19l.apps.googleusercontent.com",
+              "client_id": "428644659043-v6luem862smsjqv82acrl33utv96btrr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

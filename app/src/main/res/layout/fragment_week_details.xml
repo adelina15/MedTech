@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimaryVariant"
+                android:elevation="4dp"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:titleTextColor="@color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        style="@style/header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24 неделя"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            tools:layout_marginTop="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/fruit_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/papaya_big"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    style="@style/smaller_main_gray"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="На сроке 24 недели малыш весит как папйя и будет только расти.  Н этой неделе беременности у малыша закончилось формирование всех органов и систем. Он имеет полный набор мышц и нервных клеток. Пропорции плода в 24 недели беременности такие же, как и у новорожденного. Органы чувств настолько развиты, что ребенок реагирует на яркий свет или громкие звуки вполне ощутимыми толчками. Малыш также распознает нюансы вкуса амниотической жидкости, связанные с вашим питанием. Так что, если вы хотите, чтобы в дальнейшем кроха был приверженцем здорового питания, сейчас вы должны правильно питаться сами. Большую часть времени малыш спит. Периоды сна сменяются бодрствованием, во время которого плод активно двигается в амниотических водах. Но это вовсе не означает, что режим его сна и бодрствования совпадает с вашим. Вы можете чувствовать шевеления крохи вечером или ночью. Чаще прислушивайтесь к себе, ведь эти шевеления и пиночки могут быть сигналом о том, что положение вашего тела или громкость голоса не комфортны для ребенка. На сроке 24 неделе малыш по-прежнему худенький, его ручки и ножки тонкие, а кожа морщинистая. Это связано с тем, что подкожный жировой слой еще не развит. Но уже начинается активное накопление бурого жира, основная цель которого — поддержание постоянной температуры тела."
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fruit_image" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

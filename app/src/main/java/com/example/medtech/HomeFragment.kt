@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.medtech.adapter.WeeksAdapter
 import com.example.medtech.data.Week
 import com.example.medtech.databinding.FragmentHomeBinding
@@ -38,7 +39,8 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.lamp -> {
-                        Toast.makeText(requireContext(), "полезная информация", Toast.LENGTH_SHORT).show()
+                        val action = HomeFragmentDirections.actionHomeFragmentToInfoFragment()
+                        findNavController().navigate(action)
                         true
                     }
                     R.id.bell -> {
@@ -48,6 +50,10 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
                     else -> false
                 }
             }
+        }
+        binding.readMore.setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeFragmentToWeekDetailsFragment()
+            findNavController().navigate(action)
         }
         binding.exclamation.setOnClickListener{
             Toast.makeText(requireContext(), "важно ходить к врачу своевременно", Toast.LENGTH_SHORT).show()

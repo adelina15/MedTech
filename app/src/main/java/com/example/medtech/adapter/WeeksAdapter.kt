@@ -49,7 +49,7 @@ class WeeksAdapter(val weekClicked: Delegates.WeekClicked) :
             holder.binding.weekNumber.setTextColor(Color.parseColor("#FFFFFFFF"))
         }
         else {
-            holder.binding.cardView.strokeColor = R.color.dark_gray
+            holder.binding.cardView.strokeColor = R.color.black
             holder.binding.cardView.strokeWidth = 1
         }
     }

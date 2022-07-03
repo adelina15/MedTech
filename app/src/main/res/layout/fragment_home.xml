@@ -184,7 +184,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/readMore"
                             style="@style/text_blue1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -248,7 +248,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView10"
+                            android:id="@+id/dateCalendar"
                             style="@style/white_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

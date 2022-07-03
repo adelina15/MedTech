@@ -3,17 +3,21 @@
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
+    <style name="BlueCalenderView" >
+        <item name="colorAccent">@color/dark_green</item>
+    </style>
+
     <style name="header">
         <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textSize">24sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="code_text">
         <item name="fontFamily">@font/comfortaa</item>
         <item name="android:textSize">24sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="login_header">
         <item name="fontFamily">@font/comfortaa</item>
@@ -28,14 +32,19 @@
         <item name="android:textStyle">bold</item>
     </style>
     <style name="main_text_black">
-        <item name="fontFamily">@font/comfortaa</item>
+        <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="main_text_green">
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/dark_green</item>
     </style>
     <style name="main_text">
         <item name="fontFamily">@font/comfortaa</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="text_gray">
     <item name="fontFamily">@font/comfortaa</item>
@@ -50,7 +59,7 @@
     <style name="smaller_main_gray">
         <item name="fontFamily">@font/comfortaa</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="text_green">
         <item name="fontFamily">@font/comfortaa</item>
@@ -67,6 +76,11 @@
         <item name="fontFamily">@font/comfortaa</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/blue1</item>
+    </style>
+    <style name="text_dark_green">
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dark_green</item>
     </style>
     <style name="tiny_text">
         <item name="fontFamily">@font/comfortaa</item>
@@ -90,6 +104,12 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="black_text">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="login_button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
@@ -98,5 +118,16 @@
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="enroll_button">
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+<!--        <item name="android:paddingBottom">6dp</item>-->
+<!--        <item name="android:paddingTop">6dp</item>-->
+<!--        <item name="android:paddingLeft">15dp</item>-->
+<!--        <item name="android:paddingRight">15dp</item>-->
     </style>
 </resources>

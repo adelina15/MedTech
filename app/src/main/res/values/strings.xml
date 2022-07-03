@@ -11,4 +11,12 @@
     <string name="schedule">Расписание</string>
     <string name="checklist">Чеклист</string>
     <string name="profile">Профиль</string>
+    <string name="food">Питание</string>
+    <string name="weight">Вес</string>
+    <string name="clothes">Вещи для малыша</string>
+    <string name="bag">Сумка в роддом</string>
+    <string name="articles">Полезные статьи</string>
+    <string name="faq">Часто задаваемые вопросы</string>
+    <string name="useful">Полезное</string>
+    <string name="enroll">Записаться</string>
 </resources>
