@@ -9,10 +9,10 @@ import com.example.medtech.data.Hour
 import com.example.medtech.databinding.HourBinding
 
 class HoursAdapter: RecyclerView.Adapter<HoursAdapter.HourViewHolder>()  {
-    private var list = ArrayList<Hour>()
-    fun setList(list: ArrayList<Hour>) {
+    private var list = listOf<Hour>()
+    fun setList(list: MutableList<Hour>) {
         this.list = list
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
     class HourViewHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -23,7 +23,7 @@ class HoursAdapter: RecyclerView.Adapter<HoursAdapter.HourViewHolder>()  {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourViewHolder {
-        val view = LayoutInflater.from((parent.context)).inflate(R.layout.week, parent, false)
+        val view = LayoutInflater.from((parent.context)).inflate(R.layout.hour, parent, false)
         return HourViewHolder(view)
     }
 

@@ -1,36 +1,40 @@
 package com.example.medtech.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.medtech.R
 import com.example.medtech.data.Article
 import com.example.medtech.data.Hour
+import com.example.medtech.databinding.ArticleBinding
 import com.example.medtech.databinding.HourBinding
 
 class ArticlesAdapter: RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
-    private var list = ArrayList<Article>()
-    fun setList(list: ArrayList<Article>) {
+    private var list = listOf<Article>()
+    fun setList(list: MutableList<Article>) {
         this.list = list
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
     class ArticleViewHolder(item: View): RecyclerView.ViewHolder(item) {
-        val binding = HourBinding.bind(item)
-        fun bind(hours: Hour) = with(binding) {
-            hour.text = hours.hour
+        val binding = ArticleBinding.bind(item)
+        fun bind(article: Article) = with(binding) {
+            articleTitle.text = article.title
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from((parent.context)).inflate(R.layout.article, parent, false)
+        return ArticleViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return list.size
     }
 }

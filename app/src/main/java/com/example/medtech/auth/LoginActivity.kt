@@ -1,14 +1,10 @@
-package com.example.medtech
+package com.example.medtech.auth
 
-import android.graphics.Color
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.Window
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.medtech.R
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var navController: NavController

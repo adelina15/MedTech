@@ -1,18 +1,15 @@
-package com.example.medtech
+package com.example.medtech.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.medtech.R
 import com.example.medtech.adapter.HoursAdapter
-import com.example.medtech.adapter.WeeksAdapter
 import com.example.medtech.data.Hour
-import com.example.medtech.databinding.FragmentHomeBinding
 import com.example.medtech.databinding.FragmentScheduleBinding
-import com.example.medtech.databinding.HourBinding
 
 class ScheduleFragment : Fragment() {
 
@@ -21,13 +18,16 @@ class ScheduleFragment : Fragment() {
         get() = _binding!!
 
     private val hourAdapter by lazy { HoursAdapter() }
+    lateinit var curDate: String
 
-    val itemList = ArrayList<Hour>(
-        Hour("09:00 - 09:30"),
-        Hour("10:00 - 10:30"),
-        Hour("10:30 - 11:00"),
-        Hour("14:00 - 14:30"),
-    )
+    private val hoursList by lazy {
+        mutableListOf(
+            Hour("09:00 - 09:30"),
+            Hour("10:00 - 10:30"),
+            Hour("10:30 - 11:00"),
+            Hour("14:00 - 14:30"),
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,10 +39,15 @@ class ScheduleFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.hoursRv.adapter = hourAdapter
-        hourAdapter.setList(itemList)
-
         super.onViewCreated(view, savedInstanceState)
+        binding.hoursRv.adapter = hourAdapter
+        hourAdapter.setList(hoursList)
+//        val date = binding.calendarView.date
+//        binding.calendarView.setOnDateChangeListener { calendarView, i, i2, i3 ->
+//            curDate = "$i3 ${i2.toString()}"
+//            binding.dateCalendar.text = curDate
+//        }
+
 
 //        with(binding.toolbar) {
 //            inflateMenu(R.menu.main_menu)

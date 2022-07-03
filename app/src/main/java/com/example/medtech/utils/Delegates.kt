@@ -1,4 +1,4 @@
-package com.example.medtech
+package com.example.medtech.utils
 
 import com.example.medtech.data.Week
 

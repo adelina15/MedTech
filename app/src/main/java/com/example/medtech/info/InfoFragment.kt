@@ -1,4 +1,4 @@
-package com.example.medtech
+package com.example.medtech.info
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
-import com.example.medtech.databinding.FragmentProfileBinding
-import com.example.medtech.databinding.FragmentWeekDetailsBinding
+import com.example.medtech.R
+import com.example.medtech.databinding.FragmentInfoBinding
 
-class WeekDetailsFragment : Fragment() {
+class InfoFragment : Fragment() {
 
-    private var _binding: FragmentWeekDetailsBinding? = null
+    private var _binding: FragmentInfoBinding? = null
     private val binding
         get() = _binding!!
 
@@ -21,7 +21,7 @@ class WeekDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_week_details, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_info, container, false)
         return binding.root
     }
 
@@ -32,6 +32,10 @@ class WeekDetailsFragment : Fragment() {
             setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
+        }
+        binding.articles.setOnClickListener {
+            val action = InfoFragmentDirections.actionInfoFragmentToArticlesFragment()
+            findNavController().navigate(action)
         }
     }
     override fun onDestroyView() {

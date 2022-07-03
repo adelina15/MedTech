@@ -1,4 +1,4 @@
-package com.example.medtech
+package com.example.medtech.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.example.medtech.R
 import com.example.medtech.databinding.FragmentAuthorizationBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -39,7 +40,9 @@ class AuthorizationFragment : Fragment() {
         //получить номер телефона из editText
         number = binding.editTextPhone.text.trim().toString()
         if (number.isNotEmpty() && number.length == 13) {
-            val action = AuthorizationFragmentDirections.actionAuthorizationFragmentToCodeFragment(number)
+            val action = AuthorizationFragmentDirections.actionAuthorizationFragmentToCodeFragment(
+                    number
+                )
             findNavController().navigate(action)
         } else {
             Toast.makeText(requireContext(), "Введите номер телефона", Toast.LENGTH_SHORT).show()

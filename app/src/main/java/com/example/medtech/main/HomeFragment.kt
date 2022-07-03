@@ -1,4 +1,4 @@
-package com.example.medtech
+package com.example.medtech.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.example.medtech.utils.Delegates
+import com.example.medtech.R
 import com.example.medtech.adapter.WeeksAdapter
 import com.example.medtech.data.Week
 import com.example.medtech.databinding.FragmentHomeBinding

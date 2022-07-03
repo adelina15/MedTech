@@ -1,4 +1,4 @@
-package com.example.medtech
+package com.example.medtech.auth
 
 import android.app.Activity
 import android.content.Intent
@@ -13,7 +13,9 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
+import com.example.medtech.R
 import com.example.medtech.databinding.FragmentCodeBinding
+import com.example.medtech.main.MainActivity
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import java.util.concurrent.TimeUnit
@@ -138,7 +140,9 @@ class CodeFragment : Fragment() {
                 if (task.exception is FirebaseAuthInvalidCredentialsException) {
                     // Введенный код подтверждения недействителен
                     binding.incorrectCode.visibility = View.VISIBLE
-                    binding.editTextCode.setTextColor(ContextCompat.getColor(requireActivity(), R.color.red))
+                    binding.editTextCode.setTextColor(ContextCompat.getColor(requireActivity(),
+                        R.color.red
+                    ))
                 }
             }
         }

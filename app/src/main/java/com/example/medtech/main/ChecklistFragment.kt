@@ -1,4 +1,4 @@
-package com.example.medtech
+package com.example.medtech.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.medtech.R
 import com.example.medtech.databinding.FragmentChecklistBinding
-import com.example.medtech.databinding.FragmentProfileBinding
 
-class ProfileFragment : Fragment() {
+class ChecklistFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentChecklistBinding? = null
     private val binding
         get() = _binding!!
 
@@ -21,7 +21,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_checklist, container, false)
         return binding.root
     }
 
@@ -49,5 +49,4 @@ class ProfileFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

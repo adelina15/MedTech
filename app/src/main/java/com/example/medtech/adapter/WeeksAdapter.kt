@@ -5,12 +5,9 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.medtech.Delegates
+import com.example.medtech.utils.Delegates
 import com.example.medtech.R
-import com.example.medtech.data.Week
 import com.example.medtech.databinding.WeekBinding
 
 class WeeksAdapter(val weekClicked: Delegates.WeekClicked) :
