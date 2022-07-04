@@ -11,21 +11,22 @@ import com.example.medtech.R
 import com.example.medtech.adapter.ArticlesAdapter
 import com.example.medtech.data.Article
 import com.example.medtech.databinding.FragmentArticlesBinding
+import com.example.medtech.utils.Delegates
 
-class ArticlesFragment : Fragment() {
+class ArticlesFragment : Fragment(), Delegates.ArticleClicked {
 
     private var _binding: FragmentArticlesBinding? = null
     private val binding
         get() = _binding!!
 
-    private val articlesAdapter by lazy { ArticlesAdapter() }
+    private val articlesAdapter by lazy { ArticlesAdapter(this) }
 
     private val articlesList by lazy {
         mutableListOf(
-            Article("Дневник беременности"),
-            Article("Плановое  УЗИ"),
-            Article("Профилактика растяжек"),
-            Article("Токсикоз"),
+            Article("Дневник беременности", R.drawable.first,"Ведите дневник беременности", "Это только кажется, что данная затея — странность. На самом деле, перечитывать все этапы изменения вашего психологического и физического состояния, вы сделаете много полезных выводов для себя. Вести его удобнее по неделям: с 1-й по 40-ю"),
+            Article("Плановое  УЗИ", R.drawable.second, "Не бойтесь делать УЗИ", "В эти 9 месяцев УЗИ станет главным исследованием, которое позволит понимать, как протекает беременность и развивается ваш малыш. Будущие мамы часто беспокоятся о том, когда стоит делать первое ультразвуковое исследование и можно ли проводить его на маленьких сроках. Раньше существовало мнение, что УЗИ — процедура опасная, и делать ее часто не рекомендуется. Сегодня специалисты уверяют, что с медицинской точки зрения подобная процедура абсолютно безопасна для вас и будущего ребенка. Современные ультразвуковые приборы обладают функциями трехмерной и четырехмерной визуализации, которые позволяют не только наблюдать за движениями ребенка, но и на ранних стадиях выявлять редкие или комплексные нарушения его сердечной деятельности. "),
+            Article("Профилактика растяжек", R.drawable.first, "Практикуем прфилактику растяжек", "Большинство женщин всерьез опасается, что эластичность кожи после родов не вернется. Одна из главных эстетических проблем, которая волнует женщин во время беременности — растяжки. И во избежании этой проблемы советуем не пренебрегать профилактикой от растяжек. "),
+            Article("Токсикоз", R.drawable.second, "Как проявляется токсикоз", "Токсикоз – это своеобразная реакция организма, на возникшие вследствие беременности изменения. Плод воспринимается как потенциальная угроза здоровью, но период адаптации не велик и ограничивается, как правило, промежутком от шести до двенадцати недель. Уже на четвертом месяце, неприятные симптомы токсикоза исчезают практически у всех женщин."),
         )
     }
 
@@ -52,5 +53,10 @@ class ArticlesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(article: Article) {
+        val action = ArticlesFragmentDirections.actionArticlesFragmentToArticleDetailsFragment(article)
+        findNavController().navigate(action)
     }
 }

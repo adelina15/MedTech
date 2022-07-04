@@ -46,5 +46,17 @@
     <fragment
         android:id="@+id/articlesFragment"
         android:name="com.example.medtech.info.ArticlesFragment"
-        android:label="ArticlesFragment" />
+        android:label="ArticlesFragment" >
+        <action
+            android:id="@+id/action_articlesFragment_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailsFragment"
+        android:name="com.example.medtech.info.ArticleDetailsFragment"
+        android:label="ArticleDetailsFragment" >
+        <argument
+            android:name="article"
+            app:argType="com.example.medtech.data.Article" />
+    </fragment>
 </navigation>

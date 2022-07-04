@@ -9,8 +9,9 @@ import com.example.medtech.data.Article
 import com.example.medtech.data.Hour
 import com.example.medtech.databinding.ArticleBinding
 import com.example.medtech.databinding.HourBinding
+import com.example.medtech.utils.Delegates
 
-class ArticlesAdapter: RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
+class ArticlesAdapter(val articleClicked: Delegates.ArticleClicked): RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
     private var list = listOf<Article>()
     fun setList(list: MutableList<Article>) {
@@ -32,6 +33,9 @@ class ArticlesAdapter: RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>()
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.binding.articleTitle.setOnClickListener {
+            articleClicked.onItemClick(list[position])
+        }
     }
 
     override fun getItemCount(): Int {
