@@ -42,31 +42,29 @@ class ScheduleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.hoursRv.adapter = hourAdapter
         hourAdapter.setList(hoursList)
-//        val date = binding.calendarView.date
-//        binding.calendarView.setOnDateChangeListener { calendarView, i, i2, i3 ->
-//            curDate = "$i3 ${i2.toString()}"
-//            binding.dateCalendar.text = curDate
-//        }
-
-
-//        with(binding.toolbar) {
-//            inflateMenu(R.menu.main_menu)
-//            setOnMenuItemClickListener {
-//                when (it.itemId) {
-//                    R.id.lamp -> {
-//                        Toast.makeText(requireContext(), "полезная информация", Toast.LENGTH_SHORT)
-//                            .show()
-//                        true
-//                    }
-//                    R.id.bell -> {
-//                        Toast.makeText(requireContext(), "оповещения", Toast.LENGTH_SHORT).show()
-//                        true
-//                    }
-//                    else -> false
-//                }
-//            }
-//        }
+        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            binding.dateCalendar.text = "$dayOfMonth ${getMonthName(month)}"
+        }
     }
+
+    private fun getMonthName(monthNum: Int): String {
+        return when(monthNum){
+            0 -> "января"
+            1 -> "февраля"
+            2 -> "марта"
+            3 -> "апреля"
+            4 -> "мая"
+            5 -> "июня"
+            6 -> "июля"
+            7 -> "августа"
+            8 -> "сентября"
+            9 -> "октября"
+            10 -> "ноября"
+            11 -> "декабря"
+            else -> ""
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
