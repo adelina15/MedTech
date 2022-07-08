@@ -27,23 +27,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding.toolbar) {
-            inflateMenu(R.menu.main_menu)
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.lamp -> {
-                        Toast.makeText(requireContext(), "полезная информация", Toast.LENGTH_SHORT)
-                            .show()
-                        true
-                    }
-                    R.id.bell -> {
-                        Toast.makeText(requireContext(), "оповещения", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    else -> false
-                }
-            }
-        }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
