@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.medtech.R
 import com.example.medtech.adapter.HoursAdapter
 import com.example.medtech.data.Hour
@@ -40,6 +41,7 @@ class ScheduleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.hoursRv.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.hoursRv.adapter = hourAdapter
         hourAdapter.setList(hoursList)
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->

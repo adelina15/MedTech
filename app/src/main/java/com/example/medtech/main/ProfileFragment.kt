@@ -1,5 +1,7 @@
 package com.example.medtech.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,6 +33,14 @@ class ProfileFragment : Fragment() {
         binding.myDocButton.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToDoctorFragment()
             findNavController().navigate(action)
+        }
+        binding.callHospital.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$+996123456"))
+            startActivity(intent)
+        }
+        binding.wa.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
+                        "https://api.whatsapp.com/send?phone=996700559950 Number&text=Здравствуйте!")))
         }
     }
     override fun onDestroyView() {

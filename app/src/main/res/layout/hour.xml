@@ -4,40 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/hour"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/hour"
-            app:srcCompat="@drawable/ic_dot" />
 
         <TextView
             android:id="@+id/hour"
             style="@style/black_text"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="09:00 - 9: 30"
-            app:layout_constraintBottom_toBottomOf="@+id/enrollButton"
-            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/rounded_box"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="09:00 - 9:30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/enrollButton"
-            style="@style/enroll_button"
-            android:layout_width="100dp"
-            android:layout_height="28dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/green_stroke_rounded"
-            android:text="@string/enroll"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
