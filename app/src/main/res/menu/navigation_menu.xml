@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/home_navigation"
         android:checked="true"
         android:icon="@drawable/home_selector"
         android:title="@string/main" />
     <item
-        android:id="@+id/scheduleFragment"
+        android:id="@+id/schedule_navigation"
         android:icon="@drawable/schedule_selector"
         android:title="@string/schedule" />
     <item
-        android:id="@+id/checklistFragment"
+        android:id="@+id/checklist_navigation"
         android:icon="@drawable/check_selector"
         android:title="@string/checklist" />
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/profile_navigation"
         android:icon="@drawable/profile_selector"
         android:title="@string/profile" />
 </menu>

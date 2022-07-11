@@ -5,15 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.medtech.R
+import com.example.medtech.databinding.FragmentDoctorBinding
 import com.example.medtech.databinding.FragmentProfileBinding
 
-class ProfileFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+class DoctorFragment : Fragment() {
+
+    private var _binding: FragmentDoctorBinding? = null
     private val binding
         get() = _binding!!
 
@@ -22,20 +23,22 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_doctor, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.myDocButton.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToDoctorFragment()
-            findNavController().navigate(action)
+        with(binding.toolbar) {
+            setNavigationIcon(R.drawable.ic_arrow)
+            setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 
 }

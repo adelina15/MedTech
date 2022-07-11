@@ -1,83 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.medtech.main.HomeFragment"
-        android:label="@string/main"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_weekDetailsFragment"
-            app:destination="@id/weekDetailsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_infoFragment"
-            app:destination="@id/infoFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/scheduleFragment"
-        android:name="com.example.medtech.main.ScheduleFragment"
-        android:label="@string/schedule"
-        tools:layout="@layout/fragment_schedule" />
-    <fragment
-        android:id="@+id/checklistFragment"
-        android:name="com.example.medtech.main.ChecklistFragment"
-        android:label="@string/checklist"
-        tools:layout="@layout/fragment_checklist" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.medtech.main.ProfileFragment"
-        android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/weekDetailsFragment"
-        android:name="com.example.medtech.main.WeekDetailsFragment"
-        android:label="WeekDetailsFragment" />
-    <fragment
-        android:id="@+id/infoFragment"
-        android:name="com.example.medtech.info.InfoFragment"
-        android:label="InfoFragment" >
-        <action
-            android:id="@+id/action_infoFragment_to_articlesFragment"
-            app:destination="@id/articlesFragment" />
-        <action
-            android:id="@+id/action_infoFragment_to_faqFragment"
-            app:destination="@id/faqFragment" />
-        <action
-            android:id="@+id/action_infoFragment_to_weightFragment"
-            app:destination="@id/weightFragment" />
-        <action
-            android:id="@+id/action_infoFragment_to_foodFragment"
-            app:destination="@id/foodFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/articlesFragment"
-        android:name="com.example.medtech.info.ArticlesFragment"
-        android:label="ArticlesFragment" >
-        <action
-            android:id="@+id/action_articlesFragment_to_articleDetailsFragment"
-            app:destination="@id/articleDetailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/articleDetailsFragment"
-        android:name="com.example.medtech.info.ArticleDetailsFragment"
-        android:label="ArticleDetailsFragment" >
-        <argument
-            android:name="article"
-            app:argType="com.example.medtech.data.Article" />
-    </fragment>
-    <fragment
-        android:id="@+id/faqFragment"
-        android:name="com.example.medtech.info.FaqFragment"
-        android:label="FaqFragment" />
-    <fragment
-        android:id="@+id/weightFragment"
-        android:name="com.example.medtech.info.WeightFragment"
-        android:label="WeightFragment" />
-    <fragment
-        android:id="@+id/foodFragment"
-        android:name="com.example.medtech.info.FoodFragment"
-        android:label="FoodFragment" />
+    app:startDestination="@id/home_navigation">
+
+    <include app:graph="@navigation/home_navigation" />
+    <include app:graph="@navigation/checklist_navigation" />
+    <include app:graph="@navigation/schedule_navigation" />
+    <include app:graph="@navigation/profile_navigation" />
 </navigation>
