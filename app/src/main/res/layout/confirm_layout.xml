@@ -1,0 +1,51 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="289dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView14"
+        style="@style/tiny_text_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:gravity="center"
+        android:text="Вы уверены что хотите \nзаписаться?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/yesButton"
+        style="@style/yes_button"
+        android:layout_width="70dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/rounded_dark_green"
+        android:text="Да"
+        app:circularflow_angles="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/noButton"
+        app:layout_constraintTop_toTopOf="@+id/noButton" />
+
+    <TextView
+        android:id="@+id/noButton"
+        style="@style/yes_button"
+        android:layout_width="70dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_red"
+        android:text="Нет"
+        app:circularflow_angles="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/yesButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

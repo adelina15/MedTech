@@ -1,5 +1,7 @@
 package com.example.medtech.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medtech.R
 import com.example.medtech.data.Hour
 import com.example.medtech.databinding.HourBinding
+import com.example.medtech.utils.Delegates
 
-class HoursAdapter: RecyclerView.Adapter<HoursAdapter.HourViewHolder>()  {
+class HoursAdapter(val hourClicked: Delegates.HourClicked) : RecyclerView.Adapter<HoursAdapter.HourViewHolder>() {
+    private var selectedItemPosition: Int = -1
     private var list = listOf<Hour>()
     fun setList(list: MutableList<Hour>) {
         this.list = list
@@ -27,8 +31,23 @@ class HoursAdapter: RecyclerView.Adapter<HoursAdapter.HourViewHolder>()  {
         return HourViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: HourViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: HourViewHolder,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         holder.bind(list[position])
+        holder.binding.hour.setOnClickListener {
+            selectedItemPosition = position
+            notifyDataSetChanged()
+            hourClicked.onItemClick(list[position])
+        }
+        if (selectedItemPosition == position) {
+            holder.binding.hour.setBackgroundResource(R.drawable.blue_box)
+            holder.binding.hour.setTextColor(Color.parseColor("#39B7CD"))
+        } else {
+            holder.binding.hour.setBackgroundResource(R.drawable.rounded_box)
+            holder.binding.hour.setTextColor(Color.parseColor("#2D2D2D"))
+        }
     }
 
     override fun getItemCount(): Int {

@@ -2,6 +2,7 @@ package com.example.medtech.utils
 
 import com.example.medtech.data.Article
 import com.example.medtech.data.Faq
+import com.example.medtech.data.Hour
 import com.example.medtech.data.Week
 
 interface Delegates {
@@ -13,5 +14,8 @@ interface Delegates {
     }
     interface FaqClicked{
         fun onItemClick(faq: Faq)
+    }
+    interface HourClicked{
+        fun onItemClick(hour: Hour)
     }
 }
