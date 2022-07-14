@@ -1,9 +1,9 @@
 package com.example.medtech.utils
 
-import com.example.medtech.data.Article
-import com.example.medtech.data.Faq
-import com.example.medtech.data.Hour
-import com.example.medtech.data.Week
+import com.example.medtech.data.model.Article
+import com.example.medtech.data.model.Faq
+import com.example.medtech.data.model.Hour
+import com.example.medtech.data.model.Week
 
 interface Delegates {
     interface WeekClicked{

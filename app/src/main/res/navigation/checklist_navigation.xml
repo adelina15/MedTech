@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/checklistFragment"
-        android:name="com.example.medtech.main.ChecklistFragment"
+        android:name="com.example.medtech.view.main.ChecklistFragment"
         android:label="ChecklistFragment" />
 </navigation>

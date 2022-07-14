@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/scheduleFragment"
-        android:name="com.example.medtech.main.ScheduleFragment"
+        android:name="com.example.medtech.view.main.ScheduleFragment"
         android:label="ScheduleFragment" />
 </navigation>

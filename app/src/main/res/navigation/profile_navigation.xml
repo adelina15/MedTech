@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.medtech.main.ProfileFragment"
+        android:name="com.example.medtech.view.main.ProfileFragment"
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_doctorFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/doctorFragment"
-        android:name="com.example.medtech.main.DoctorFragment"
+        android:name="com.example.medtech.view.main.DoctorFragment"
         android:label="fragment_doctor"
         tools:layout="@layout/fragment_doctor" />
 </navigation>

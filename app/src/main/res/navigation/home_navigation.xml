@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.medtech.main.HomeFragment"
+        android:name="com.example.medtech.view.main.HomeFragment"
         android:label="@string/main"
         tools:layout="@layout/fragment_home" >
         <action
@@ -18,11 +18,11 @@
     </fragment>
     <fragment
         android:id="@+id/weekDetailsFragment"
-        android:name="com.example.medtech.main.WeekDetailsFragment"
+        android:name="com.example.medtech.view.main.WeekDetailsFragment"
         android:label="WeekDetailsFragment" />
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.example.medtech.info.InfoFragment"
+        android:name="com.example.medtech.view.info.InfoFragment"
         android:label="InfoFragment" >
         <action
             android:id="@+id/action_infoFragment_to_articlesFragment"
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/articlesFragment"
-        android:name="com.example.medtech.info.ArticlesFragment"
+        android:name="com.example.medtech.view.info.ArticlesFragment"
         android:label="ArticlesFragment" >
         <action
             android:id="@+id/action_articlesFragment_to_articleDetailsFragment"
@@ -47,22 +47,22 @@
     </fragment>
     <fragment
         android:id="@+id/articleDetailsFragment"
-        android:name="com.example.medtech.info.ArticleDetailsFragment"
+        android:name="com.example.medtech.view.info.ArticleDetailsFragment"
         android:label="ArticleDetailsFragment" >
         <argument
             android:name="article"
-            app:argType="com.example.medtech.data.Article" />
+            app:argType="com.example.medtech.data.model.Article" />
     </fragment>
     <fragment
         android:id="@+id/faqFragment"
-        android:name="com.example.medtech.info.FaqFragment"
+        android:name="com.example.medtech.view.info.FaqFragment"
         android:label="FaqFragment" />
     <fragment
         android:id="@+id/weightFragment"
-        android:name="com.example.medtech.info.WeightFragment"
+        android:name="com.example.medtech.view.info.WeightFragment"
         android:label="WeightFragment" />
     <fragment
         android:id="@+id/foodFragment"
-        android:name="com.example.medtech.info.FoodFragment"
+        android:name="com.example.medtech.view.info.FoodFragment"
         android:label="FoodFragment" />
 </navigation>

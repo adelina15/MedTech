@@ -14,8 +14,8 @@
     <color name="darker_gray">#484444</color>
     <color name="red">#CD3800</color>
     <color name="pomodoro">#FF6D76</color>
-    <color name="blue">#26ABFF</color>
     <color name="blue1">#39B7CD</color>
     <color name="light_gray">#A9A9A9</color>
+    <color name="lightest_gray">#DBDBDB</color>
     <color name="milk">#F4F4F4</color>
 </resources>
