@@ -1,8 +1,6 @@
 package com.example.medtech.view.auth
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.medtech.R
 import com.example.medtech.databinding.FragmentAuthorizationBinding
-import com.example.medtech.view.main.MainActivity
 import com.example.medtech.viewmodel.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -38,7 +35,6 @@ class AuthorizationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
-
         binding.getCodeButton.setOnClickListener {
             login()
         }
@@ -56,12 +52,10 @@ class AuthorizationFragment : Fragment() {
     private fun getToken(number: String) {
         authViewModel.getToken(number)
         authViewModel.token.observe(requireActivity()){
-            Log.i("authMess", it.status)
             val action = AuthorizationFragmentDirections.actionAuthorizationFragmentToCodeFragment(number)
             findNavController().navigate(action)
         }
         authViewModel.errorMessage.observe(requireActivity()){
-            Log.i("authMess", it)
             Toast.makeText(requireContext(), "Такого номера нет!", Toast.LENGTH_SHORT).show()
         }
     }

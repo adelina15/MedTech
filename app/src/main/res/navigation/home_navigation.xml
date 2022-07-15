@@ -19,7 +19,11 @@
     <fragment
         android:id="@+id/weekDetailsFragment"
         android:name="com.example.medtech.view.main.WeekDetailsFragment"
-        android:label="WeekDetailsFragment" />
+        android:label="WeekDetailsFragment" >
+        <argument
+            android:name="baby"
+            app:argType="com.example.medtech.data.model.BabyItem" />
+    </fragment>
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.medtech.view.info.InfoFragment"
@@ -36,6 +40,12 @@
         <action
             android:id="@+id/action_infoFragment_to_foodFragment"
             app:destination="@id/foodFragment" />
+        <action
+            android:id="@+id/action_infoFragment_to_bagFragment"
+            app:destination="@id/bagFragment" />
+        <action
+            android:id="@+id/action_infoFragment_to_clothesFragment"
+            app:destination="@id/clothesFragment" />
     </fragment>
     <fragment
         android:id="@+id/articlesFragment"
@@ -65,4 +75,13 @@
         android:id="@+id/foodFragment"
         android:name="com.example.medtech.view.info.FoodFragment"
         android:label="FoodFragment" />
+    <fragment
+        android:id="@+id/bagFragment"
+        android:name="com.example.medtech.view.info.BagFragment"
+        android:label="BagFragment" />
+    <fragment
+        android:id="@+id/clothesFragment"
+        android:name="com.example.medtech.view.info.ClothesFragment"
+        android:label="fragment_clothes"
+        tools:layout="@layout/fragment_clothes" />
 </navigation>

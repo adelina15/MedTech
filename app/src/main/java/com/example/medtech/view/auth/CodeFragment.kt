@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.medtech.R
 import com.example.medtech.databinding.FragmentCodeBinding
@@ -41,9 +40,9 @@ class CodeFragment : Fragment() {
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.backArrow.setOnClickListener {
-            findNavController().navigateUp()
-        }
+//        binding.backArrow.setOnClickListener {
+//            findNavController().navigateUp()
+//        }
         auth = FirebaseAuth.getInstance()
         binding.number.text = number
         startTimer()

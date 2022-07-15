@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.medtech.R
 import com.example.medtech.databinding.FragmentWeekDetailsBinding
 
 class WeekDetailsFragment : Fragment() {
 
+    private val args by navArgs<WeekDetailsFragmentArgs>()
     private var _binding: FragmentWeekDetailsBinding? = null
     private val binding
         get() = _binding!!
@@ -33,6 +36,11 @@ class WeekDetailsFragment : Fragment() {
             setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
+        }
+        with(binding){
+            weekText.text = args.baby.content
+            weekNumber.text = "${args.baby.week} неделя"
+//            Glide.with(requireContext()).load(args.bouquet.photo).into(image)
         }
     }
     override fun onDestroyView() {

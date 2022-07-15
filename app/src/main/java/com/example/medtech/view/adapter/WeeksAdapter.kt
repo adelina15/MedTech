@@ -8,22 +8,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medtech.utils.Delegates
 import com.example.medtech.R
+import com.example.medtech.data.model.Week
 import com.example.medtech.databinding.WeekBinding
 
 class WeeksAdapter(val weekClicked: Delegates.WeekClicked) :
     RecyclerView.Adapter<WeeksAdapter.WeekViewHolder>() {
 
-    private var selectedItemPosition: Int = -1
-    private var list = ArrayList<String>()
-    fun setList(list: ArrayList<String>) {
+    private var selectedItemPosition: Int = 4
+    private var list = listOf<Week>()
+    fun setList(list: MutableList<Week>) {
         this.list = list
         notifyDataSetChanged()
     }
 
     class WeekViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = WeekBinding.bind(item)
-        fun bind(week: String) = with(binding) {
-            weekNumber.text = week
+        fun bind(week: Week) = with(binding) {
+            weekNumber.text = week.week.toString()
         }
     }
 
@@ -35,6 +36,7 @@ class WeeksAdapter(val weekClicked: Delegates.WeekClicked) :
     override fun onBindViewHolder(holder: WeekViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
         holder.binding.cardView.setOnClickListener {
+            weekClicked.onItemClick(list[position])
             selectedItemPosition = position
             notifyDataSetChanged()
         }

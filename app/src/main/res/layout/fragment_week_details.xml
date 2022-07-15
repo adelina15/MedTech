@@ -35,7 +35,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/weekNumber"
                         style="@style/header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/weekText"
                     style="@style/smaller_main_gray"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

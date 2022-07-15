@@ -49,6 +49,14 @@ class InfoFragment : Fragment() {
             val action = InfoFragmentDirections.actionInfoFragmentToFoodFragment()
             findNavController().navigate(action)
         }
+        binding.bag.setOnClickListener {
+            val action = InfoFragmentDirections.actionInfoFragmentToBagFragment()
+            findNavController().navigate(action)
+        }
+        binding.clothes.setOnClickListener {
+            val action = InfoFragmentDirections.actionInfoFragmentToClothesFragment()
+            findNavController().navigate(action)
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

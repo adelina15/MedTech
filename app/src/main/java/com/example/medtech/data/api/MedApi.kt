@@ -1,10 +1,9 @@
 package com.example.medtech.data.api
 
+import com.example.medtech.data.model.BabyItem
 import com.example.medtech.data.model.Token
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface MedApi {
     @FormUrlEncoded
@@ -12,4 +11,9 @@ interface MedApi {
     suspend fun getToken(
         @Field("phone") phone: String,
     ): Response<Token>
+
+    @GET("api/handbook/{id}/")
+    suspend fun getBabyByWeek(
+        @Path("id") id: Int?
+    ): Response<BabyItem>
 }

@@ -1,6 +1,7 @@
 package com.example.medtech.view.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,19 +9,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.medtech.utils.Delegates
 import com.example.medtech.R
+import com.example.medtech.data.model.BabyItem
 import com.example.medtech.view.adapter.WeeksAdapter
 import com.example.medtech.data.model.Week
 import com.example.medtech.databinding.FragmentHomeBinding
+import com.example.medtech.viewmodel.AuthViewModel
+import com.example.medtech.viewmodel.BabyViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), Delegates.WeekClicked {
     private var _binding: FragmentHomeBinding? = null
     private val binding
         get() = _binding!!
     private val weekAdapter by lazy { WeeksAdapter(this) }
-
-    val itemList = ArrayList<String>()
+    private val babyViewModel by viewModel<BabyViewModel>()
+    val itemList = mutableListOf<Week>()
+    private var babyItem: BabyItem? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +40,27 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        babyViewModel.getBabyById(1)
+        babyViewModel.baby.observe(requireActivity()){
+            Log.i("mainServ", it.toString())
+            babyItem = it
+            if(isAdded) {
+                with(binding) {
+//            Glide.with(requireContext()).load(babyItem.pictures[0]).into(baby)
+//            Glide.with(requireContext()).load(babyItem.pictures[1]).into(fruit)
+                    description.text = babyItem?.title
+                    dateCalendar.text = "${babyItem?.week} неделя"
+                    weight.text = babyItem?.weight
+                    height.text = babyItem?.height
+                    advice.text = babyItem?.advices
+                }
+            }
+        }
+        babyViewModel.errorMessage.observe(requireActivity()){
+            Log.i("mainServ", it)
+        }
         for (i in 1..20){
-            itemList.add("$i")
+            itemList.add(Week(i))
         }
         with(binding.toolbar) {
             inflateMenu(R.menu.main_menu)
@@ -53,14 +79,18 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
                 }
             }
         }
-        binding.readMore.setOnClickListener{
-            val action = HomeFragmentDirections.actionHomeFragmentToWeekDetailsFragment()
-            findNavController().navigate(action)
+        with(binding){
+//            Glide.with(requireContext()).load(babyItem.pictures[0]).into(baby)
+//            Glide.with(requireContext()).load(babyItem.pictures[1]).into(fruit)
+            readMore.setOnClickListener{
+                val action = HomeFragmentDirections.actionHomeFragmentToWeekDetailsFragment(babyItem!!)
+                findNavController().navigate(action)
+            }
+            exclamation.setOnClickListener{
+                Toast.makeText(requireContext(), "важно ходить к врачу своевременно", Toast.LENGTH_SHORT).show()
+            }
+            weeksRv.adapter = weekAdapter
         }
-        binding.exclamation.setOnClickListener{
-            Toast.makeText(requireContext(), "важно ходить к врачу своевременно", Toast.LENGTH_SHORT).show()
-        }
-        binding.weeksRv.adapter = weekAdapter
         weekAdapter.setList(itemList)
     }
 
@@ -70,6 +100,15 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     }
 
     override fun onItemClick(week: Week) {
+        getWeek(week)
+    }
 
+    private fun getWeek(week: Week) {
+        when (week.week) {
+            5 -> babyViewModel.getBabyById(1)
+            7 -> babyViewModel.getBabyById(2)
+            10 -> babyViewModel.getBabyById(3)
+            else -> babyViewModel.getBabyById(3)
+        }
     }
 }
