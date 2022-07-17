@@ -42,7 +42,7 @@ class AuthorizationFragment : Fragment() {
     }
     private fun login() {
         //получить номер телефона из editText
-        number = binding.editTextPhone.text.trim().toString()
+        number = "+996${binding.editTextPhone.unMaskedText.toString()}"
         if (number.isNotEmpty() && number.length == 13) {
             getToken(number)
         } else {
