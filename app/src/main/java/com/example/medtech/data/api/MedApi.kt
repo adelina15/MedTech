@@ -1,6 +1,7 @@
 package com.example.medtech.data.api
 
 import com.example.medtech.data.model.BabyItem
+import com.example.medtech.data.model.Picture
 import com.example.medtech.data.model.Token
 import retrofit2.Response
 import retrofit2.http.*
@@ -16,4 +17,10 @@ interface MedApi {
     suspend fun getBabyByWeek(
         @Path("id") id: Int?
     ): Response<BabyItem>
+
+    @GET("api/pictures/{id}/")
+    suspend fun getPictureById(
+        @Path("id") id: Int?
+    ): Response<Picture>
+
 }

@@ -6,13 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.medtech.utils.Delegates
 import com.example.medtech.R
 import com.example.medtech.data.model.BabyItem
+import com.example.medtech.data.model.Picture
 import com.example.medtech.view.adapter.WeeksAdapter
 import com.example.medtech.data.model.Week
 import com.example.medtech.databinding.FragmentHomeBinding
@@ -28,6 +31,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     private val babyViewModel by viewModel<BabyViewModel>()
     val itemList = mutableListOf<Week>()
     private var babyItem: BabyItem? = null
+    private lateinit var fruitImg: Picture
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,14 +44,24 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycle.addObserver(babyViewModel)
+        showProgressBar()
         babyViewModel.getBabyById(1)
-        babyViewModel.baby.observe(requireActivity()){
+        babyViewModel.baby.observe(requireActivity()) {
+            hideProgressBar()
             Log.i("mainServ", it.toString())
             babyItem = it
-            if(isAdded) {
+            if (isAdded) {
                 with(binding) {
-//            Glide.with(requireContext()).load(babyItem.pictures[0]).into(baby)
-//            Glide.with(requireContext()).load(babyItem.pictures[1]).into(fruit)
+                    babyViewModel.getPicturePictureById(babyItem!!.pictures[1])
+                    babyViewModel.getPictureBabyById(babyItem!!.pictures[0])
+                    babyViewModel.imagePicture.observe(requireActivity()) {
+                        Glide.with(requireContext()).load(it.image).into(fruit)
+                        fruitImg = it
+                    }
+                    babyViewModel.fruitPicture.observe(requireActivity()) {
+                        Glide.with(requireContext()).load(it.image).into(baby)
+                    }
                     description.text = babyItem?.title
                     dateCalendar.text = "${babyItem?.week} неделя"
                     weight.text = babyItem?.weight
@@ -56,10 +70,10 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
                 }
             }
         }
-        babyViewModel.errorMessage.observe(requireActivity()){
+        babyViewModel.errorMessage.observe(requireActivity()) {
             Log.i("mainServ", it)
         }
-        for (i in 1..20){
+        for (i in 1..20) {
             itemList.add(Week(i))
         }
         with(binding.toolbar) {
@@ -79,15 +93,18 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
                 }
             }
         }
-        with(binding){
-//            Glide.with(requireContext()).load(babyItem.pictures[0]).into(baby)
-//            Glide.with(requireContext()).load(babyItem.pictures[1]).into(fruit)
-            readMore.setOnClickListener{
-                val action = HomeFragmentDirections.actionHomeFragmentToWeekDetailsFragment(babyItem!!)
+        with(binding) {
+            readMore.setOnClickListener {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToWeekDetailsFragment(babyItem!!, fruitImg)
                 findNavController().navigate(action)
             }
-            exclamation.setOnClickListener{
-                Toast.makeText(requireContext(), "важно ходить к врачу своевременно", Toast.LENGTH_SHORT).show()
+            exclamation.setOnClickListener {
+                Toast.makeText(
+                    requireContext(),
+                    "важно ходить к врачу своевременно",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             weeksRv.adapter = weekAdapter
         }
@@ -103,12 +120,20 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
         getWeek(week)
     }
 
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
     private fun getWeek(week: Week) {
         when (week.week) {
             5 -> babyViewModel.getBabyById(1)
-            7 -> babyViewModel.getBabyById(2)
-            10 -> babyViewModel.getBabyById(3)
-            else -> babyViewModel.getBabyById(3)
+            7 -> babyViewModel.getBabyById(3)
+            10 -> babyViewModel.getBabyById(5)
+            else -> babyViewModel.getBabyById(5)
         }
     }
 }

@@ -28,8 +28,8 @@ val viewModules = module {
 fun getOkHttp(): OkHttpClient {
     return OkHttpClient.Builder()
         .addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
+        .connectTimeout(5, TimeUnit.MINUTES)
+        .readTimeout(5, TimeUnit.MINUTES)
         .build()
 }
 

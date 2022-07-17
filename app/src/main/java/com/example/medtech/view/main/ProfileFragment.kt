@@ -39,7 +39,7 @@ class ProfileFragment : Fragment() {
         }
         binding.wa.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
-                        "https://api.whatsapp.com/send?phone=996700559950 Number&text=Здравствуйте!")))
+                        "https://api.whatsapp.com/send?phone=996700070878 Number&text=Здравствуйте!")))
         }
     }
     override fun onDestroyView() {

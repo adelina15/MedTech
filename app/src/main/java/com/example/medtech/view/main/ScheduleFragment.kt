@@ -99,7 +99,6 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
             form()
             builder.dismiss()
         }
-        builder.setCanceledOnTouchOutside(false)
         builder.show()
 
         //To make AlertDialog smaller in width
@@ -136,7 +135,6 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
             binding.chooseButton.text = "Вы записаны"
             formBuilder.dismiss()
         }
-        formBuilder.setCanceledOnTouchOutside(false)
         formBuilder.show()
     }
 
