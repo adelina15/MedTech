@@ -40,7 +40,7 @@ class WeekDetailsFragment : Fragment() {
         with(binding){
             weekText.text = args.baby.content
             weekNumber.text = "${args.baby.week} неделя"
-            Glide.with(requireContext()).load(args.picture.image).into(fruitImage)
+            Glide.with(requireContext()).load(args.baby.fruit_img).into(fruitImage)
         }
     }
     override fun onDestroyView() {

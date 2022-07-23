@@ -23,9 +23,6 @@
         <argument
             android:name="baby"
             app:argType="com.example.medtech.data.model.BabyItem" />
-        <argument
-            android:name="picture"
-            app:argType="com.example.medtech.data.model.Picture" />
     </fragment>
     <fragment
         android:id="@+id/infoFragment"

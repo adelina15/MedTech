@@ -36,10 +36,24 @@ class AuthorizationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+        setupObservers()
         binding.getCodeButton.setOnClickListener {
             login()
         }
     }
+
+    private fun setupObservers() {
+        authViewModel.token.observe(requireActivity()){
+            Log.i("authE", it.status)
+                val action = AuthorizationFragmentDirections.actionAuthorizationFragmentToCodeFragment(number)
+                findNavController().navigate(action)
+        }
+        authViewModel.errorMessage.observe(requireActivity()){
+            Log.i("authE", it)
+            Toast.makeText(requireContext(), "Такого номера нет!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun login() {
         //получить номер телефона из editText
         number = "+996${binding.editTextPhone.unMaskedText.toString()}"
@@ -52,14 +66,5 @@ class AuthorizationFragment : Fragment() {
 
     private fun getToken(number: String) {
         authViewModel.getToken(number)
-        authViewModel.token.observe(requireActivity()){
-            Log.i("authE", it.status)
-            val action = AuthorizationFragmentDirections.actionAuthorizationFragmentToCodeFragment(number)
-            findNavController().navigate(action)
-        }
-        authViewModel.errorMessage.observe(requireActivity()){
-            Log.i("authE", it)
-            Toast.makeText(requireContext(), "Такого номера нет!", Toast.LENGTH_SHORT).show()
-        }
     }
 }

@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide
 import com.example.medtech.utils.Delegates
 import com.example.medtech.R
 import com.example.medtech.data.model.BabyItem
-import com.example.medtech.data.model.Picture
 import com.example.medtech.view.adapter.WeeksAdapter
 import com.example.medtech.data.model.Week
 import com.example.medtech.databinding.FragmentHomeBinding
@@ -31,7 +30,6 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     private val babyViewModel by viewModel<BabyViewModel>()
     val itemList = mutableListOf<Week>()
     private var babyItem: BabyItem? = null
-    private lateinit var fruitImg: Picture
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,15 +51,8 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
             babyItem = it
             if (isAdded) {
                 with(binding) {
-                    babyViewModel.getPicturePictureById(babyItem!!.pictures[1])
-                    babyViewModel.getPictureBabyById(babyItem!!.pictures[0])
-                    babyViewModel.imagePicture.observe(requireActivity()) {
-                        Glide.with(requireContext()).load(it.image).into(fruit)
-                        fruitImg = it
-                    }
-                    babyViewModel.fruitPicture.observe(requireActivity()) {
-                        Glide.with(requireContext()).load(it.image).into(baby)
-                    }
+                    Glide.with(requireContext()).load(babyItem?.fruit_img).into(fruit)
+                    Glide.with(requireContext()).load(babyItem?.baby_img).into(baby)
                     description.text = babyItem?.title
                     dateCalendar.text = "${babyItem?.week} неделя"
                     weight.text = babyItem?.weight
@@ -96,7 +87,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
         with(binding) {
             readMore.setOnClickListener {
                 val action =
-                    HomeFragmentDirections.actionHomeFragmentToWeekDetailsFragment(babyItem!!, fruitImg)
+                    HomeFragmentDirections.actionHomeFragmentToWeekDetailsFragment(babyItem!!)
                 findNavController().navigate(action)
             }
             exclamation.setOnClickListener {
@@ -131,7 +122,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     private fun getWeek(week: Week) {
         when (week.week) {
             5 -> babyViewModel.getBabyById(1)
-            7 -> babyViewModel.getBabyById(3)
+            7 -> babyViewModel.getBabyById(2)
             10 -> babyViewModel.getBabyById(5)
             else -> babyViewModel.getBabyById(5)
         }
