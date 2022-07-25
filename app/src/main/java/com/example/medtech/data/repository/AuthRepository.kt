@@ -3,6 +3,7 @@ package com.example.medtech.data.repository
 import com.example.medtech.data.api.MedApi
 import com.example.medtech.data.model.BabyItem
 import com.example.medtech.data.model.Token
+import com.example.medtech.data.model.User
 import retrofit2.Response
 
 class AuthRepository constructor (private val medApi: MedApi) {
@@ -14,4 +15,7 @@ class AuthRepository constructor (private val medApi: MedApi) {
         return medApi.getBabyByWeek(id)
     }
 
+    suspend fun getUserById(id: Int): Response<User> {
+        return medApi.getUserById(id)
+    }
 }

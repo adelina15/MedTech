@@ -5,6 +5,7 @@ import com.example.medtech.data.repository.AuthRepository
 import com.example.medtech.utils.Constants
 import com.example.medtech.viewmodel.AuthViewModel
 import com.example.medtech.viewmodel.BabyViewModel
+import com.example.medtech.viewmodel.UserViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -23,6 +24,7 @@ val retrofitModule = module {
 val viewModules = module {
     viewModel { AuthViewModel(repository = get()) }
     viewModel { BabyViewModel(repository = get()) }
+    viewModel { UserViewModel(repository = get()) }
 }
 
 fun getOkHttp(): OkHttpClient {

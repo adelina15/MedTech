@@ -3,20 +3,32 @@ package com.example.medtech.view.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.auth0.android.jwt.Claim
+import com.auth0.android.jwt.JWT
 import com.example.medtech.R
+import com.example.medtech.data.UserPreferences
 import com.example.medtech.databinding.FragmentProfileBinding
+import com.example.medtech.view.auth.AuthorizationFragmentDirections
+import com.example.medtech.viewmodel.AuthViewModel
+import com.example.medtech.viewmodel.UserViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding
         get() = _binding!!
+    private val userViewModel by viewModel<UserViewModel>()
+    lateinit var sharedPreferences: UserPreferences
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +36,10 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        sharedPreferences =  UserPreferences(requireContext())
+        userViewModel.getBabyById(sharedPreferences.fetchUserId())
+        Log.i("profile", sharedPreferences.fetchUserId().toString())
+        setupObservers()
         return binding.root
     }
 
@@ -42,6 +58,25 @@ class ProfileFragment : Fragment() {
                         "https://api.whatsapp.com/send?phone=996700070878 Number&text=Здравствуйте!")))
         }
     }
+
+    private fun setupObservers() {
+        userViewModel.user.observe(requireActivity()) {
+            with(binding){
+                idNumber.text = it.patient.inn
+                name.text = "${it.first_name} ${it.last_name}"
+                dateOfBirth.text = it.birth_date
+                address.text = it.address
+                age.text = "${it.age} лет"
+                email.text = it.email ?: "нет"
+                phoneNumber.text = it.phone
+            }
+        }
+        userViewModel.errorMessage.observe(requireActivity()) {
+            Log.i("profile", it)
+            Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
