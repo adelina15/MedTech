@@ -14,8 +14,4 @@ class AuthRepository constructor (private val medApi: MedApi) {
     suspend fun getBabyByWeek(id: Int): Response<BabyItem>{
         return medApi.getBabyByWeek(id)
     }
-
-    suspend fun getUserById(id: Int): Response<User> {
-        return medApi.getUserById(id)
-    }
 }

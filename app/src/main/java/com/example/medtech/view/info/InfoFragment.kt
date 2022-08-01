@@ -28,6 +28,7 @@ class InfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding.toolbar) {
+            inflateMenu(R.menu.info_menu)
             setNavigationIcon(R.drawable.ic_arrow)
             setNavigationOnClickListener {
                 findNavController().navigateUp()

@@ -28,15 +28,8 @@ class SplashActivity : AppCompatActivity() {
             window.statusBarColor = Color.WHITE
         }
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            // This method will be executed once the timer is over
-            // Start your app main activity
-
-            startActivity(Intent(this, LoginActivity::class.java))
-
-            // close this activity
-            finish()
-        }, 1000)
-
+        startActivity(Intent(this, MainActivity::class.java))
+        // close this activity
+        finish()
     }
 }

@@ -49,10 +49,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
             </androidx.appcompat.widget.Toolbar>
-
-
 
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -71,20 +68,37 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/articleImage"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/imageCard"
                     android:layout_width="0dp"
                     android:layout_height="345dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/rounded_edit_text"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bag"
+                    app:cardCornerRadius="13dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/bagImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/rounded_edit_text"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bag"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/textView35"
@@ -93,9 +107,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="Список необходимых вещей  и документов"
-                    app:layout_constraintEnd_toEndOf="@+id/articleImage"
-                    app:layout_constraintStart_toStartOf="@+id/articleImage"
-                    app:layout_constraintTop_toBottomOf="@+id/articleImage" />
+                    app:layout_constraintEnd_toEndOf="@+id/imageCard"
+                    app:layout_constraintStart_toStartOf="@+id/imageCard"
+                    app:layout_constraintTop_toBottomOf="@+id/imageCard" />
 
                 <TextView
                     android:id="@+id/textView37"
@@ -104,9 +118,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:text="Важные документы"
-                    app:layout_constraintEnd_toEndOf="@+id/articleImage"
+                    app:layout_constraintEnd_toEndOf="@+id/imageCard"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/articleImage"
+                    app:layout_constraintStart_toStartOf="@+id/imageCard"
                     app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
                 <TextView

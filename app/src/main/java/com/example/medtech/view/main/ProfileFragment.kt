@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.auth0.android.jwt.Claim
 import com.auth0.android.jwt.JWT
+import com.bumptech.glide.Glide
 import com.example.medtech.R
 import com.example.medtech.data.UserPreferences
 import com.example.medtech.databinding.FragmentProfileBinding
@@ -69,6 +70,7 @@ class ProfileFragment : Fragment() {
                 age.text = "${it.age} лет"
                 email.text = it.email ?: "нет"
                 phoneNumber.text = it.phone
+                if(it.image != null) Glide.with(requireContext()).load(it.image).into(image)
             }
         }
         userViewModel.errorMessage.observe(requireActivity()) {

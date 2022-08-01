@@ -9,12 +9,12 @@ import com.example.medtech.data.model.Faq
 import com.example.medtech.databinding.QuestionsBinding
 import com.example.medtech.utils.Delegates
 
-class FaqAdapter(val articleClicked: Delegates.FaqClicked): RecyclerView.Adapter<FaqAdapter.FaqViewHolder>()  {
+class FaqAdapter(): RecyclerView.Adapter<FaqAdapter.FaqViewHolder>()  {
 
     private var list = listOf<Faq>()
-    fun setList(list: MutableList<Faq>) {
+    fun setList(list: List<Faq>) {
         this.list = list
-//        notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
     class FaqViewHolder(item: View): RecyclerView.ViewHolder(item)  {

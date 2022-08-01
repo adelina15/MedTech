@@ -4,22 +4,21 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.medtech.data.model.User
-import com.example.medtech.data.repository.AuthRepository
-import com.example.medtech.data.repository.UserRepository
+import com.example.medtech.data.model.Article
+import com.example.medtech.data.model.Faq
+import com.example.medtech.data.repository.InfoRepository
 import kotlinx.coroutines.launch
 
-class UserViewModel (private val repository: UserRepository): ViewModel(),
-    DefaultLifecycleObserver {
+class FaqViewModel(private val repository: InfoRepository): ViewModel(), DefaultLifecycleObserver {
 
-    val user = MutableLiveData<User>()
+    val faq = MutableLiveData<Array<Faq>>()
     val errorMessage = MutableLiveData<String>()
 
-    fun getBabyById(id: Int) {
+    fun getFaq() {
         viewModelScope.launch {
-            val response = repository.getUserById(id)
+            val response = repository.getFaq()
             if (response.isSuccessful) {
-                user.postValue(response.body())
+                faq.postValue(response.body())
             }
             else{
                 errorMessage.postValue(response.errorBody().toString())

@@ -33,9 +33,10 @@ class ArticleDetailsFragment : Fragment() {
         val article = args.article
         with(binding){
             articleTitle.text = article.title
-            subtitle.text = article.subtitle
-            Glide.with(requireContext()).load(article.image).into(articleImage)
-
+            mainText.text = article.content
+            showProgressBar()
+            Glide.with(requireContext()).load(article.pictures).into(articleImage)
+            hideProgressBar()
         }
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_arrow)
@@ -48,6 +49,14 @@ class ArticleDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
     }
 
 }

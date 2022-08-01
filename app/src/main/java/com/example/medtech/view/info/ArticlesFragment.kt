@@ -1,10 +1,12 @@
 package com.example.medtech.view.info
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.medtech.R
@@ -12,6 +14,8 @@ import com.example.medtech.view.adapter.ArticlesAdapter
 import com.example.medtech.data.model.Article
 import com.example.medtech.databinding.FragmentArticlesBinding
 import com.example.medtech.utils.Delegates
+import com.example.medtech.viewmodel.ArticlesViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ArticlesFragment : Fragment(), Delegates.ArticleClicked {
 
@@ -20,15 +24,8 @@ class ArticlesFragment : Fragment(), Delegates.ArticleClicked {
         get() = _binding!!
 
     private val articlesAdapter by lazy { ArticlesAdapter(this) }
+    private val articlesViewModel by viewModel<ArticlesViewModel>()
 
-    private val articlesList by lazy {
-        mutableListOf(
-            Article("Дневник беременности", R.drawable.first,"Ведите дневник беременности", "Это только кажется, что данная затея — странность. На самом деле, перечитывать все этапы изменения вашего психологического и физического состояния, вы сделаете много полезных выводов для себя. Вести его удобнее по неделям: с 1-й по 40-ю"),
-            Article("Плановое  УЗИ", R.drawable.second, "Не бойтесь делать УЗИ", "В эти 9 месяцев УЗИ станет главным исследованием, которое позволит понимать, как протекает беременность и развивается ваш малыш. Будущие мамы часто беспокоятся о том, когда стоит делать первое ультразвуковое исследование и можно ли проводить его на маленьких сроках. Раньше существовало мнение, что УЗИ — процедура опасная, и делать ее часто не рекомендуется. Сегодня специалисты уверяют, что с медицинской точки зрения подобная процедура абсолютно безопасна для вас и будущего ребенка. Современные ультразвуковые приборы обладают функциями трехмерной и четырехмерной визуализации, которые позволяют не только наблюдать за движениями ребенка, но и на ранних стадиях выявлять редкие или комплексные нарушения его сердечной деятельности. "),
-            Article("Профилактика растяжек", R.drawable.first, "Практикуем прфилактику растяжек", "Большинство женщин всерьез опасается, что эластичность кожи после родов не вернется. Одна из главных эстетических проблем, которая волнует женщин во время беременности — растяжки. И во избежании этой проблемы советуем не пренебрегать профилактикой от растяжек. "),
-            Article("Токсикоз", R.drawable.second, "Как проявляется токсикоз", "Токсикоз – это своеобразная реакция организма, на возникшие вследствие беременности изменения. Плод воспринимается как потенциальная угроза здоровью, но период адаптации не велик и ограничивается, как правило, промежутком от шести до двенадцати недель. Уже на четвертом месяце, неприятные симптомы токсикоза исчезают практически у всех женщин."),
-        )
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +37,9 @@ class ArticlesFragment : Fragment(), Delegates.ArticleClicked {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        articlesViewModel.getArticles()
+        showProgressBar()
+        setupObservers()
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_arrow)
             setNavigationOnClickListener {
@@ -47,7 +47,25 @@ class ArticlesFragment : Fragment(), Delegates.ArticleClicked {
             }
         }
         binding.articlesRv.adapter = articlesAdapter
-        articlesAdapter.setList(articlesList)
+    }
+
+    private fun setupObservers() {
+        articlesViewModel.articles.observe(requireActivity()) {
+            hideProgressBar()
+            articlesAdapter.setList(it.asList())
+        }
+        articlesViewModel.errorMessage.observe(requireActivity()) {
+            Log.i("articles", it)
+            Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

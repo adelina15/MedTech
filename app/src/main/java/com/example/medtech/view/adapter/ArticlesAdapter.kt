@@ -12,9 +12,9 @@ import com.example.medtech.utils.Delegates
 class ArticlesAdapter(val articleClicked: Delegates.ArticleClicked): RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
     private var list = listOf<Article>()
-    fun setList(list: MutableList<Article>) {
+    fun setList(list: List<Article>) {
         this.list = list
-//        notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
     class ArticleViewHolder(item: View): RecyclerView.ViewHolder(item) {

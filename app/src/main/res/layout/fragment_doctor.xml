@@ -48,22 +48,40 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" >
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/doctor_image"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/imageCard"
                     android:layout_width="90dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="30dp"
-                    android:src="@drawable/doctor"
-                    android:translationZ="90dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardElevation="2dp"
                     app:layout_constraintEnd_toEndOf="@+id/cardView1"
                     app:layout_constraintStart_toStartOf="@+id/cardView1"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/doctor_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/doctor"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView1"
@@ -75,6 +93,7 @@
                     android:layout_marginBottom="16dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="13dp"
+                    app:cardElevation="1dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -64,7 +64,8 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
         babyViewModel.errorMessage.observe(requireActivity()) {
             Log.i("mainServ", it)
         }
-        for (i in 1..20) {
+        //healthy pregnancy lasts up to 42 weeks
+        for (i in 1..42) {
             itemList.add(Week(i))
         }
         with(binding.toolbar) {
@@ -119,6 +120,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
         binding.progressBar.visibility = View.VISIBLE
     }
 
+    //only for testing, remove after full connection
     private fun getWeek(week: Week) {
         when (week.week) {
             5 -> babyViewModel.getBabyById(1)

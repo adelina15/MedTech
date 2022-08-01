@@ -19,6 +19,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/ic_home_selected.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/ic_icon_green.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/ic_lamp.xml" value="0.2545" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/ic_lamp_blue.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/ic_notification.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/ic_profile.xml" value="0.2545" />
@@ -31,6 +32,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/rectangle_3.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/rounded_box.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/rounded_card_blue.xml" value="0.2545" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/rounded_corners.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/rounded_dark_green.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/rounded_edit_text.xml" value="0.2545" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/drawable/rounded_rectangle.xml" value="0.2545" />
@@ -53,14 +55,14 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_authorization.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_bag.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_checklist.xml" value="0.4" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_clothes.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_clothes.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_code.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_doctor.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_doctor.xml" value="0.3386537126995142" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_faq.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_food.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_home.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_info.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_profile.xml" value="0.37770897832817335" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_profile.xml" value="0.26565051714752314" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_schedule.xml" value="0.536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_week_details.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/fragment_weight.xml" value="0.25416666666666665" />
@@ -70,6 +72,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/questions.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/spinner_list.xml" value="0.253125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/layout/week.xml" value="1.0" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/menu/info_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/menu/main_menu.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/menu/navigation_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MedTech/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2545" />

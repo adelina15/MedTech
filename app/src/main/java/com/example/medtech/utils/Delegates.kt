@@ -12,9 +12,6 @@ interface Delegates {
     interface ArticleClicked{
         fun onItemClick(article: Article)
     }
-    interface FaqClicked{
-        fun onItemClick(faq: Faq)
-    }
     interface HourClicked{
         fun onItemClick(hour: Hour)
     }
