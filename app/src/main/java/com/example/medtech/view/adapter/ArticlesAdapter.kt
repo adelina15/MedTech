@@ -9,7 +9,7 @@ import com.example.medtech.data.model.Article
 import com.example.medtech.databinding.ArticleBinding
 import com.example.medtech.utils.Delegates
 
-class ArticlesAdapter(val articleClicked: Delegates.ArticleClicked): RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
+class ArticlesAdapter(private val articleClicked: Delegates.ArticleClicked): RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
     private var list = listOf<Article>()
     fun setList(list: List<Article>) {

@@ -40,15 +40,11 @@ class CodeFragment : Fragment() {
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        binding.backArrow.setOnClickListener {
-//            findNavController().navigateUp()
-//        }
         auth = FirebaseAuth.getInstance()
         binding.number.text = number
         startTimer()
 
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
             // Этот метод вызывается после завершения проверки
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 if(credential.smsCode != null){
@@ -91,18 +87,6 @@ class CodeFragment : Fragment() {
             resendOTP(requireActivity(), number)
             startTimer()
         }
-
-//        binding.linearLayoutBack.setOnClickListener {
-//            onBackPressed()
-//        }
-
-//        with(binding.toolbar) {
-//            setNavigationIcon(R.drawable.ic_back_arrow)
-//            setNavigationOnClickListener {
-//                val action = CodeFragmentDirections.actionCodeFragmentToLoginFragment()
-//                findNavController().navigate(action)
-//            }
-//        }
     }
 
     override fun onDestroyView() {

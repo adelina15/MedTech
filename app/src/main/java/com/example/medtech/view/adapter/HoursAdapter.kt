@@ -7,22 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medtech.R
-import com.example.medtech.data.model.Hour
+import com.example.medtech.data.model.Time
 import com.example.medtech.databinding.HourBinding
 import com.example.medtech.utils.Delegates
 
 class HoursAdapter(val hourClicked: Delegates.HourClicked) : RecyclerView.Adapter<HoursAdapter.HourViewHolder>() {
     private var selectedItemPosition: Int = -1
-    private var list = listOf<Hour>()
-    fun setList(list: MutableList<Hour>) {
+    private var list = listOf<Time>()
+    fun setList(list: List<Time>) {
         this.list = list
-//        notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
     class HourViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = HourBinding.bind(item)
-        fun bind(hours: Hour) = with(binding) {
-            hour.text = hours.hour
+        fun bind(hours: Time) = with(binding) {
+            hour.text = "${hours.start} - ${hours.end}"
         }
     }
 

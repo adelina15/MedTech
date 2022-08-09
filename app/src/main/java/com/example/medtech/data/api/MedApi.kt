@@ -3,13 +3,21 @@ package com.example.medtech.data.api
 import com.example.medtech.data.model.*
 import retrofit2.Response
 import retrofit2.http.*
+import java.util.*
 
 interface MedApi {
     @FormUrlEncoded
-    @POST("accounts/login_mob/")
+    @POST("accounts/login/mob/")
     suspend fun getToken(
         @Field("phone") phone: String,
     ): Response<Token>
+
+    @FormUrlEncoded
+    @POST("api/get-free-time/")
+    suspend fun getFreeTime(
+        @Field("doctor") doctor: Int,
+        @Field("date") date: Date
+    ): Response<TimeSlot>
 
     @GET("api/handbook/{id}/")
     suspend fun getBabyByWeek(

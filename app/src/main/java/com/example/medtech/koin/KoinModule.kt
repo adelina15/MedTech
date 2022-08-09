@@ -3,6 +3,7 @@ package com.example.medtech.koin
 import com.example.medtech.data.api.MedApi
 import com.example.medtech.data.repository.AuthRepository
 import com.example.medtech.data.repository.InfoRepository
+import com.example.medtech.data.repository.ScheduleRepository
 import com.example.medtech.data.repository.UserRepository
 import com.example.medtech.utils.Constants
 import com.example.medtech.viewmodel.*
@@ -22,6 +23,7 @@ val retrofitModule = module {
     factory { AuthRepository(medApi = get()) }
     factory { UserRepository(medApi = get()) }
     factory { InfoRepository(medApi = get()) }
+    factory { ScheduleRepository(medApi = get()) }
 }
 val viewModules = module {
     viewModel { AuthViewModel(repository = get()) }
@@ -29,6 +31,7 @@ val viewModules = module {
     viewModel { UserViewModel(repository = get()) }
     viewModel { ArticlesViewModel(repository = get()) }
     viewModel { FaqViewModel(repository = get()) }
+    viewModel { ScheduleViewModel(repository = get()) }
 }
 
 fun getOkHttp(): OkHttpClient {

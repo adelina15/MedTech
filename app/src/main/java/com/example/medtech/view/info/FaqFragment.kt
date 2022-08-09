@@ -11,10 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.medtech.R
 import com.example.medtech.view.adapter.FaqAdapter
-import com.example.medtech.data.model.Faq
 import com.example.medtech.databinding.FragmentFaqBinding
-import com.example.medtech.utils.Delegates
-import com.example.medtech.viewmodel.ArticlesViewModel
 import com.example.medtech.viewmodel.FaqViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

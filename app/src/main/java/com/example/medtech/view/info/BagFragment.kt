@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.medtech.R
-import com.example.medtech.databinding.FragmentArticlesBinding
 import com.example.medtech.databinding.FragmentBagBinding
 
 class BagFragment : Fragment() {

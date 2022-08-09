@@ -32,6 +32,7 @@ class FaqAdapter(): RecyclerView.Adapter<FaqAdapter.FaqViewHolder>()  {
 
     override fun onBindViewHolder(holder: FaqViewHolder, position: Int) {
         holder.bind(list[position])
+        //logic to expand and close answers
         val isExpanded: Boolean = list[position].expanded
         with(holder.binding){
             if (isExpanded) {

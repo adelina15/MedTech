@@ -61,7 +61,7 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun login() {
-        //получить номер телефона из editText
+        //get phone number from editText
         number = "+996${binding.editTextPhone.unMaskedText.toString()}"
         if (number.isNotEmpty() && number.length == 13) {
             getToken(number)

@@ -4,20 +4,22 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.medtech.data.model.Token
-import com.example.medtech.data.repository.AuthRepository
+import com.example.medtech.data.model.TimeSlot
+import com.example.medtech.data.repository.ScheduleRepository
 import kotlinx.coroutines.launch
+import java.util.*
 
-class AuthViewModel (private val repository: AuthRepository): ViewModel(), DefaultLifecycleObserver {
+class ScheduleViewModel (private val repository: ScheduleRepository): ViewModel(),
+    DefaultLifecycleObserver {
 
-    val token = MutableLiveData<Token>()
+    val freeTime = MutableLiveData<TimeSlot>()
     val errorMessage = MutableLiveData<String>()
 
-    fun getToken(number: String) {
+    fun getFreeTime(doctor:Int, date: Date) {
         viewModelScope.launch {
-            val response = repository.getToken(number)
+            val response = repository.getFreeTime(doctor, date)
             if (response.isSuccessful) {
-                token.postValue(response.body())
+                freeTime.postValue(response.body())
             }
             else{
                 errorMessage.postValue(response.errorBody().toString())

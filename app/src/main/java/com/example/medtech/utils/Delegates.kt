@@ -1,9 +1,6 @@
 package com.example.medtech.utils
 
-import com.example.medtech.data.model.Article
-import com.example.medtech.data.model.Faq
-import com.example.medtech.data.model.Hour
-import com.example.medtech.data.model.Week
+import com.example.medtech.data.model.*
 
 interface Delegates {
     interface WeekClicked{
@@ -13,6 +10,6 @@ interface Delegates {
         fun onItemClick(article: Article)
     }
     interface HourClicked{
-        fun onItemClick(hour: Hour)
+        fun onItemClick(hour: Time)
     }
 }

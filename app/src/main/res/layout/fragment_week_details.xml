@@ -74,7 +74,7 @@
                     android:id="@+id/fruit_image"
                     android:layout_width="194dp"
                     android:layout_height="180dp"
-                    android:src="@drawable/papaya_big"
+                    android:src="@drawable/doctor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

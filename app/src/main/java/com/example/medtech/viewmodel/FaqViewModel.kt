@@ -4,7 +4,6 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.medtech.data.model.Article
 import com.example.medtech.data.model.Faq
 import com.example.medtech.data.repository.InfoRepository
 import kotlinx.coroutines.launch

@@ -2,6 +2,7 @@ package com.example.medtech.view.main
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -10,9 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.medtech.R
 import com.example.medtech.view.adapter.HoursAdapter
-import com.example.medtech.data.model.Hour
+import com.example.medtech.data.model.Time
 import com.example.medtech.databinding.FragmentScheduleBinding
 import com.example.medtech.utils.Delegates
+import com.example.medtech.viewmodel.ScheduleViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class ScheduleFragment : Fragment(), Delegates.HourClicked {
 
@@ -21,17 +25,9 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         get() = _binding!!
 
     private val hourAdapter by lazy { HoursAdapter(this) }
-    lateinit var curDate: String
+    private val scheduleViewModel by viewModel<ScheduleViewModel>()
 
-    private val hoursList by lazy {
-        mutableListOf(
-            Hour("09:00 - 09:30"),
-            Hour("10:00 - 10:30"),
-            Hour("10:30 - 11:00"),
-            Hour("11:00 - 11:30"),
-            Hour("14:00 - 14:30"),
-        )
-    }
+    lateinit var curDate: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,11 +40,24 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupObservers()
         binding.hoursRv.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.hoursRv.adapter = hourAdapter
-        hourAdapter.setList(hoursList)
+        Log.i("schedule", "${binding.calendarView.date} 1")
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+//            scheduleViewModel.getFreeTime()
             binding.dateCalendar.text = "$dayOfMonth ${getMonthName(month)}"
+            Log.i("schedule", "$dayOfMonth.${month+1}.$year 2")
+        }
+    }
+
+    private fun setupObservers() {
+        scheduleViewModel.freeTime.observe(requireActivity()) {
+            hourAdapter.setList(it.free_times)
+        }
+        scheduleViewModel.errorMessage.observe(requireActivity()) {
+            Log.i("schedule", it)
+            Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -75,7 +84,7 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         _binding = null
     }
 
-    override fun onItemClick(hour: Hour) {
+    override fun onItemClick(hour: Time) {
         with(binding.chooseButton){
             setTextColor(Color.parseColor("#1BB3C8"))
             setBackgroundColor(Color.parseColor("#FFFFFFFF"))

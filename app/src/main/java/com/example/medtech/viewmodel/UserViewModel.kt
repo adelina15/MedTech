@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.medtech.data.model.User
-import com.example.medtech.data.repository.AuthRepository
 import com.example.medtech.data.repository.UserRepository
 import kotlinx.coroutines.launch
 
