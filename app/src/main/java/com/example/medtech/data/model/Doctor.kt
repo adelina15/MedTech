@@ -8,7 +8,7 @@ data class Doctor(
     val email: String,
     val first_name: String,
     val id: Int,
-    val image: Any,
+    val image: String?,
     val last_name: String,
     val patient: List<Int>,
     val phone: String,

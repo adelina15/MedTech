@@ -48,7 +48,7 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/rounded_edit_text"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/food"
+                            android:src="@drawable/no_picture"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -152,24 +152,14 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                         <TextView
-                            android:id="@+id/textView23"
-                            style="@style/tiny_text_green"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:text="ПОЧТА:"
-                            app:layout_constraintStart_toStartOf="@+id/address"
-                            app:layout_constraintTop_toBottomOf="@+id/address" />
-
-                        <TextView
                             android:id="@+id/textView24"
                             style="@style/tiny_text_green"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="32dp"
                             android:text="ТЕЛЕФОН:"
-                            app:layout_constraintStart_toStartOf="@+id/email"
-                            app:layout_constraintTop_toBottomOf="@+id/email" />
+                            app:layout_constraintTop_toBottomOf="@+id/address"
+                            tools:layout_editor_absoluteX="10dp" />
 
                         <TextView
                             android:id="@+id/textView25"
@@ -212,16 +202,6 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView24"
                             app:layout_constraintTop_toBottomOf="@+id/textView24" />
-
-                        <TextView
-                            android:id="@+id/email"
-                            style="@style/black_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="ainagul.akmatova@gmail.com"
-                            app:layout_constraintStart_toStartOf="@+id/textView23"
-                            app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                         <TextView
                             android:id="@+id/address"

@@ -29,7 +29,7 @@ class ProfileFragment : Fragment() {
         get() = _binding!!
     private val userViewModel by viewModel<UserViewModel>()
     lateinit var sharedPreferences: UserPreferences
-
+    private var doctorID = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +38,7 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         sharedPreferences =  UserPreferences(requireContext())
-        userViewModel.getBabyById(sharedPreferences.fetchUserId())
+        userViewModel.getProfileById(sharedPreferences.fetchUserId())
         Log.i("profile", sharedPreferences.fetchUserId().toString())
         setupObservers()
         return binding.root
@@ -47,7 +47,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.myDocButton.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToDoctorFragment()
+            val action = ProfileFragmentDirections.actionProfileFragmentToDoctorFragment(doctorID)
             findNavController().navigate(action)
         }
         binding.callHospital.setOnClickListener {
@@ -63,14 +63,14 @@ class ProfileFragment : Fragment() {
     private fun setupObservers() {
         userViewModel.user.observe(requireActivity()) {
             with(binding){
-                idNumber.text = it.patient.inn
+                idNumber.text = it.inn
                 name.text = "${it.first_name} ${it.last_name}"
                 dateOfBirth.text = it.birth_date
                 address.text = it.address
-                age.text = "${it.age} лет"
-                email.text = it.email ?: "нет"
+//                age.text = "${it.age} лет"
                 phoneNumber.text = it.phone
                 if(it.image != null) Glide.with(requireContext()).load(it.image).into(image)
+                doctorID = it.doctor_field
             }
         }
         userViewModel.errorMessage.observe(requireActivity()) {

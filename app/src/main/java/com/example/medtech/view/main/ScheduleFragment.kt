@@ -16,6 +16,9 @@ import com.example.medtech.databinding.FragmentScheduleBinding
 import com.example.medtech.utils.Delegates
 import com.example.medtech.viewmodel.ScheduleViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ScheduleFragment : Fragment(), Delegates.HourClicked {
@@ -26,8 +29,6 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
 
     private val hourAdapter by lazy { HoursAdapter(this) }
     private val scheduleViewModel by viewModel<ScheduleViewModel>()
-
-    lateinit var curDate: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,20 +41,34 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        scheduleViewModel.getFreeTime()
         setupObservers()
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        val date = Calendar.getInstance().time
+        val dateToday = formatter.format(date)
+        Log.i("schedule", "$dateToday date today")
+
         binding.hoursRv.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.hoursRv.adapter = hourAdapter
-        Log.i("schedule", "${binding.calendarView.date} 1")
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
 //            scheduleViewModel.getFreeTime()
             binding.dateCalendar.text = "$dayOfMonth ${getMonthName(month)}"
-            Log.i("schedule", "$dayOfMonth.${month+1}.$year 2")
+
+            //месяцы до 10 в setOnDateChangeListener выдаются однозачными, меняем в двузначные
+            var monthWithTwoNumbers = "${month + 1}"
+            if (monthWithTwoNumbers.length == 1){
+                monthWithTwoNumbers = "0$monthWithTwoNumbers"
+            }
+            val selectedDate = "$year-${monthWithTwoNumbers}-$dayOfMonth"
+            Log.i("schedule", "$selectedDate selected date")
         }
     }
 
     private fun setupObservers() {
         scheduleViewModel.freeTime.observe(requireActivity()) {
             hourAdapter.setList(it.free_times)
+            Log.i("schedule", "${it.free_times}")
+
         }
         scheduleViewModel.errorMessage.observe(requireActivity()) {
             Log.i("schedule", it)
@@ -62,7 +77,7 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
     }
 
     private fun getMonthName(monthNum: Int): String {
-        return when(monthNum){
+        return when (monthNum) {
             0 -> "января"
             1 -> "февраля"
             2 -> "марта"
@@ -85,7 +100,7 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
     }
 
     override fun onItemClick(hour: Time) {
-        with(binding.chooseButton){
+        with(binding.chooseButton) {
             setTextColor(Color.parseColor("#1BB3C8"))
             setBackgroundColor(Color.parseColor("#FFFFFFFF"))
             setOnClickListener {

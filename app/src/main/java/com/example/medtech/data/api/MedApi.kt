@@ -24,10 +24,15 @@ interface MedApi {
         @Path("id") id: Int?
     ): Response<BabyItem>
 
-    @GET("api/patient-profile/{id}/")
+    @GET("api/patient/{id}/")
     suspend fun getUserById(
         @Path("id") id: Int?
     ): Response<User>
+
+    @GET("api/doctor/{id}/")
+    suspend fun getDoctorById(
+        @Path("id") id: Int?
+    ): Response<Doctor>
 
     @GET("api/article/")
     suspend fun getArticles(): Response<Array<Article>>
