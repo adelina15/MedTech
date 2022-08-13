@@ -1,122 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView20"
-        style="@style/tiny_text_bold"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:background="#EDF3FB"
-        android:gravity="center_vertical"
-        android:paddingStart="20dp"
-        android:text="Добавить запись"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/closeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView20"
-        app:srcCompat="@drawable/ic_close" />
+        <TextView
+            android:id="@+id/textView20"
+            style="@style/tiny_text_bold"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="#EDF3FB"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:text="Добавить запись"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView21"
-        style="@style/tiny_text_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="21dp"
-        android:text="Врач"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        <ImageView
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView20"
+            app:srcCompat="@drawable/ic_close" />
 
-    <TextView
-        android:id="@+id/textView22"
-        style="@style/tiny_text_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Причина встречи"
-        app:layout_constraintStart_toStartOf="@+id/doctorName"
-        app:layout_constraintTop_toBottomOf="@+id/doctorName" />
+        <TextView
+            android:id="@+id/textView21"
+            style="@style/tiny_text_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="21dp"
+            android:text="Врач"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
-    <TextView
-        android:id="@+id/textView27"
-        style="@style/tiny_text_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Вопрос/проблема"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="221dp" />
+        <TextView
+            android:id="@+id/textView22"
+            style="@style/tiny_text_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Причина встречи"
+            app:layout_constraintStart_toStartOf="@+id/doctorName"
+            app:layout_constraintTop_toBottomOf="@+id/doctorName" />
 
-    <TextView
-        android:id="@+id/doctorName"
-        style="@style/text_green_12"
-        android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/light_gray_outline"
-        android:gravity="center_vertical"
-        android:paddingStart="10dp"
-        android:text="Гладышева Яна Захаровна"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        <TextView
+            android:id="@+id/textView27"
+            style="@style/tiny_text_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вопрос/проблема"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="221dp" />
 
-    <EditText
-        android:id="@+id/additionalMessage"
-        style="@style/tiny_text"
-        android:layout_width="0dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/light_gray_outline"
-        android:ems="10"
-        android:hint="Дополнительное сообщение"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+        <TextView
+            android:id="@+id/doctorName"
+            style="@style/text_green_12"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/light_gray_outline"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="Гладышева Яна Захаровна"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView21"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-    <Button
-        android:id="@+id/saveButton"
-        style="@style/login_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:layout_marginBottom="32dp"
-        android:text="Сохранить"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/additionalMessage"
-        app:layout_constraintStart_toStartOf="@+id/additionalMessage"
-        app:layout_constraintTop_toBottomOf="@+id/additionalMessage" />
+        <EditText
+            android:id="@+id/additionalMessage"
+            style="@style/tiny_text"
+            android:layout_width="0dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/light_gray_outline"
+            android:ems="10"
+            android:hint="Дополнительное сообщение"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
-    <EditText
-        android:id="@+id/editTextReason"
-        style="@style/tiny_text"
-        android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/light_gray_outline"
-        android:ems="10"
-        android:hint="Причина"
-        android:inputType="textPersonName"
-        android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        <Button
+            android:id="@+id/saveButton"
+            style="@style/login_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="32dp"
+            android:text="Сохранить"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/additionalMessage"
+            app:layout_constraintStart_toStartOf="@+id/additionalMessage"
+            app:layout_constraintTop_toBottomOf="@+id/additionalMessage" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/editTextReason"
+            style="@style/tiny_text"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/light_gray_outline"
+            android:ems="10"
+            android:hint="Причина"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

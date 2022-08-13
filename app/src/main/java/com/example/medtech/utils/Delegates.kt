@@ -10,6 +10,6 @@ interface Delegates {
         fun onItemClick(article: Article)
     }
     interface HourClicked{
-        fun onItemClick(hour: Time)
+        fun onItemClick(hourId: Int)
     }
 }

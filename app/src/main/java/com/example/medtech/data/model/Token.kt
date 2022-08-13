@@ -5,5 +5,6 @@ data class Token(
     val is_superuser: Boolean,
     val refresh: String,
     val status: String,
+    val expires_day: String,
     val user_id: Int
 )

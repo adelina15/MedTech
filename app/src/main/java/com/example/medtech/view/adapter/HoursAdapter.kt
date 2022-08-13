@@ -39,7 +39,7 @@ class HoursAdapter(val hourClicked: Delegates.HourClicked) : RecyclerView.Adapte
         holder.binding.hour.setOnClickListener {
             selectedItemPosition = position
             notifyDataSetChanged()
-            hourClicked.onItemClick(list[position])
+            hourClicked.onItemClick(list[position].id)
         }
         if (selectedItemPosition == position) {
             holder.binding.hour.setBackgroundResource(R.drawable.blue_box)

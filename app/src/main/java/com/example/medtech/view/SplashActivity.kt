@@ -13,6 +13,7 @@ import android.view.Window
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.medtech.view.auth.LoginActivity
 import com.example.medtech.view.main.MainActivity
+import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -27,8 +28,9 @@ class SplashActivity : AppCompatActivity() {
             wic.isAppearanceLightStatusBars = true
             window.statusBarColor = Color.WHITE
         }
-
-        startActivity(Intent(this, LoginActivity::class.java))
+//        if (FirebaseAuth.getInstance() == null){
+            startActivity(Intent(this, LoginActivity::class.java))
+//        } else startActivity(Intent(this, MainActivity::class.java))
         // close this activity
         finish()
     }

@@ -41,7 +41,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         sharedPreferences = UserPreferences(requireContext())
-//        userViewModel.getProfileById(sharedPreferences.fetchUserId())
+        userViewModel.getProfileById(sharedPreferences.fetchUserId())
         setupObservers()
         return binding.root
     }

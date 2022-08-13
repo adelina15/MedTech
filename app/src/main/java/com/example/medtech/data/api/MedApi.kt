@@ -19,6 +19,15 @@ interface MedApi {
         @Field("date") date: String
     ): Response<TimeSlot>
 
+    @FormUrlEncoded
+    @POST("api/appointment/")
+    suspend fun appointment(
+        @Field("record") record: String,
+        @Field("description") description: String,
+        @Field("date") date: String,
+        @Field("time_slots") timeSlots: Int,
+    )
+
     @GET("api/handbook/{id}/")
     suspend fun getBabyByWeek(
         @Path("id") id: Int?

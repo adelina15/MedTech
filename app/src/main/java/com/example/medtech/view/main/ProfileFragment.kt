@@ -75,7 +75,7 @@ class ProfileFragment : Fragment() {
                 age.text = "${it.age} лет"
                 phoneNumber.text = it.phone
                 if (it.image != null) Glide.with(requireContext()).load(it.image).into(image)
-                doctor = it.doctor_field
+//                doctor = it.doctor_field
             }
         }
         userViewModel.errorMessage.observe(requireActivity()) {

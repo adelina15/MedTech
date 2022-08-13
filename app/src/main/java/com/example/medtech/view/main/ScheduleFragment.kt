@@ -7,20 +7,20 @@ import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.medtech.R
 import com.example.medtech.data.UserPreferences
-import com.example.medtech.view.adapter.HoursAdapter
-import com.example.medtech.data.model.Time
+import com.example.medtech.databinding.FormBinding
 import com.example.medtech.databinding.FragmentScheduleBinding
 import com.example.medtech.utils.Delegates
+import com.example.medtech.view.adapter.HoursAdapter
 import com.example.medtech.viewmodel.ScheduleViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
+
 
 class ScheduleFragment : Fragment(), Delegates.HourClicked {
 
@@ -31,7 +31,7 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
     private lateinit var sharedPreferences: UserPreferences
     private val hourAdapter by lazy { HoursAdapter(this) }
     private val scheduleViewModel by viewModel<ScheduleViewModel>()
-    private var doctorId = 1
+    private var doctorId = 4
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,17 +40,17 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
         sharedPreferences = UserPreferences(requireContext())
-        doctorId = sharedPreferences.fetchDoctorId()
+//        doctorId = sharedPreferences.fetchDoctorId()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupObservers()
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         val date = Calendar.getInstance().time
         val dateToday = formatter.format(date)
         scheduleViewModel.getFreeTime(doctorId, dateToday)
+        Log.i("schedule", "${scheduleViewModel.getFreeTime(doctorId, dateToday)} getfreetime")
         setupObservers()
         Log.i("schedule", "$dateToday date today")
 
@@ -65,14 +65,18 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
             }
             val selectedDate = "$year-${monthWithTwoNumbers}-$dayOfMonth"
             scheduleViewModel.getFreeTime(doctorId, selectedDate)
+            scheduleViewModel.setDate(selectedDate)
             Log.i("schedule", "$selectedDate selected date")
         }
     }
 
     private fun setupObservers() {
         scheduleViewModel.freeTime.observe(requireActivity()) {
-            hourAdapter.setList(it.free_times)
-            Log.i("schedule", "${it.free_times}")
+            if (it.free_times != null){
+                hourAdapter.setList(it.free_times)
+                Log.i("schedule", "${it.free_times}")
+            }
+            else binding.noAvailableTime.visibility = View.VISIBLE
         }
         scheduleViewModel.errorMessage.observe(requireActivity()) {
             Log.i("schedule", it)
@@ -103,17 +107,17 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         _binding = null
     }
 
-    override fun onItemClick(hour: Time) {
+    override fun onItemClick(hourId: Int) {
         with(binding.chooseButton) {
             setTextColor(Color.parseColor("#1BB3C8"))
             setBackgroundColor(Color.parseColor("#FFFFFFFF"))
             setOnClickListener {
-                alertDialog()
+                alertDialog(hourId)
             }
         }
     }
 
-    private fun alertDialog() {
+    private fun alertDialog(hourId: Int) {
         //custom AlertDialog
         val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom).create()
         val view = layoutInflater.inflate(R.layout.confirm_layout, null)
@@ -124,7 +128,7 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
             builder.dismiss()
         }
         yes.setOnClickListener {
-            form()
+            form(hourId)
             builder.dismiss()
         }
         builder.show()
@@ -136,17 +140,23 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         window!!.setLayout(width, WindowManager.LayoutParams.WRAP_CONTENT)
     }
 
-    private fun form() {
+    private fun form(hourId: Int) {
         //custom AlertDialog
+
+        val formBinding: FormBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(
+                context
+            ), R.layout.form, null, false
+        )
         val formBuilder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom).create()
-        val view = layoutInflater.inflate(R.layout.form, null)
-        val close = view.findViewById<ImageView>(R.id.closeButton)
-        val save = view.findViewById<Button>(R.id.saveButton)
-        formBuilder.setView(view)
+        val close = formBinding.closeButton
+        val save = formBinding.saveButton
+        formBuilder.setView(binding.root)
         close.setOnClickListener {
             formBuilder.dismiss()
         }
         save.setOnClickListener {
+            scheduleViewModel.makeAppointment(formBinding.additionalMessage.text.toString(), formBinding.editTextReason.text.toString(), hourId)
             Toast.makeText(requireContext(), "Вы успешно записались", Toast.LENGTH_SHORT).show()
             binding.appointmentInfo.visibility = View.VISIBLE
             binding.chooseButton.text = "Вы записаны"
