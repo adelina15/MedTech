@@ -15,6 +15,22 @@ class UserPreferences (context: Context) {
         }
     }
 
+    fun saveDoctorId(id: Int?){
+        if (id != null){
+            editor.putInt(Constants.DOCTOR, id).apply()
+        }
+    }
+
+    fun saveDoctorName(name: String?){
+        if (name != null){
+            editor.putString(Constants.DOCTOR_NAME, name).apply()
+        }
+    }
+
+    fun fetchDoctorId():Int {
+        return prefs.getInt(Constants.DOCTOR, 1)
+    }
+
     fun fetchUserId():Int {
         return prefs.getInt(Constants.TOKEN, 1)
     }

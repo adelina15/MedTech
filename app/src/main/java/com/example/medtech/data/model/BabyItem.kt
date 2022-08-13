@@ -8,8 +8,10 @@ data class BabyItem(
     val content: String,
     val fruit_img: String,
     val height: String,
-    val id: Int,
     val title: String,
     val week: Int,
-    val weight: String
+    val weight: String,
+    val food: String,
+    val dates_of_advices: String,
+    val mom_weight: String
 ): Serializable

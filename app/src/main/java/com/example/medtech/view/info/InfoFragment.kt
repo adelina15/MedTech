@@ -42,14 +42,6 @@ class InfoFragment : Fragment() {
             val action = InfoFragmentDirections.actionInfoFragmentToFaqFragment()
             findNavController().navigate(action)
         }
-        binding.weight.setOnClickListener {
-            val action = InfoFragmentDirections.actionInfoFragmentToWeightFragment()
-            findNavController().navigate(action)
-        }
-        binding.food.setOnClickListener {
-            val action = InfoFragmentDirections.actionInfoFragmentToFoodFragment()
-            findNavController().navigate(action)
-        }
         binding.bag.setOnClickListener {
             val action = InfoFragmentDirections.actionInfoFragmentToBagFragment()
             findNavController().navigate(action)

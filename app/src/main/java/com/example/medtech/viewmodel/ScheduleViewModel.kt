@@ -15,7 +15,7 @@ class ScheduleViewModel (private val repository: ScheduleRepository): ViewModel(
     val freeTime = MutableLiveData<TimeSlot>()
     val errorMessage = MutableLiveData<String>()
 
-    fun getFreeTime(doctor:Int, date: Date) {
+    fun getFreeTime(doctor:Int, date: String) {
         viewModelScope.launch {
             val response = repository.getFreeTime(doctor, date)
             if (response.isSuccessful) {

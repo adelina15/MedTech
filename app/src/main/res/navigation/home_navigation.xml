@@ -15,6 +15,12 @@
         <action
             android:id="@+id/action_homeFragment_to_infoFragment"
             app:destination="@id/infoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_foodFragment"
+            app:destination="@id/foodFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_weightFragment"
+            app:destination="@id/weightFragment" />
     </fragment>
     <fragment
         android:id="@+id/weekDetailsFragment"
@@ -34,12 +40,6 @@
         <action
             android:id="@+id/action_infoFragment_to_faqFragment"
             app:destination="@id/faqFragment" />
-        <action
-            android:id="@+id/action_infoFragment_to_weightFragment"
-            app:destination="@id/weightFragment" />
-        <action
-            android:id="@+id/action_infoFragment_to_foodFragment"
-            app:destination="@id/foodFragment" />
         <action
             android:id="@+id/action_infoFragment_to_bagFragment"
             app:destination="@id/bagFragment" />
@@ -69,12 +69,20 @@
         android:label="FaqFragment" />
     <fragment
         android:id="@+id/weightFragment"
-        android:name="com.example.medtech.view.info.WeightFragment"
-        android:label="WeightFragment" />
+        android:name="com.example.medtech.view.main.WeightFragment"
+        android:label="WeightFragment" >
+        <argument
+            android:name="weightInfo"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/foodFragment"
-        android:name="com.example.medtech.view.info.FoodFragment"
-        android:label="FoodFragment" />
+        android:name="com.example.medtech.view.main.FoodFragment"
+        android:label="FoodFragment" >
+        <argument
+            android:name="foodInfo"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/bagFragment"
         android:name="com.example.medtech.view.info.BagFragment"

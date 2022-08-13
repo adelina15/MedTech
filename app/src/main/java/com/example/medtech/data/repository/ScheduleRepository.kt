@@ -6,7 +6,7 @@ import retrofit2.Response
 import java.util.*
 
 class ScheduleRepository constructor(private val medApi: MedApi) {
-    suspend fun getFreeTime(doctor: Int, date: Date): Response<TimeSlot> {
+    suspend fun getFreeTime(doctor: Int, date: String): Response<TimeSlot> {
         return medApi.getFreeTime(doctor, date)
     }
 }

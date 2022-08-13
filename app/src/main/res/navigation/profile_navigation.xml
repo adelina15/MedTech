@@ -19,7 +19,7 @@
         android:label="fragment_doctor"
         tools:layout="@layout/fragment_doctor" >
         <argument
-            android:name="doctorId"
-            app:argType="integer" />
+            android:name="doctor"
+            app:argType="com.example.medtech.data.model.Doctor" />
     </fragment>
 </navigation>

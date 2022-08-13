@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.medtech.R
+import com.example.medtech.data.UserPreferences
 import com.example.medtech.view.adapter.HoursAdapter
 import com.example.medtech.data.model.Time
 import com.example.medtech.databinding.FragmentScheduleBinding
@@ -27,8 +28,10 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
     private val binding
         get() = _binding!!
 
+    private lateinit var sharedPreferences: UserPreferences
     private val hourAdapter by lazy { HoursAdapter(this) }
     private val scheduleViewModel by viewModel<ScheduleViewModel>()
+    private var doctorId = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,30 +39,32 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
+        sharedPreferences = UserPreferences(requireContext())
+        doctorId = sharedPreferences.fetchDoctorId()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        scheduleViewModel.getFreeTime()
         setupObservers()
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         val date = Calendar.getInstance().time
         val dateToday = formatter.format(date)
+        scheduleViewModel.getFreeTime(doctorId, dateToday)
+        setupObservers()
         Log.i("schedule", "$dateToday date today")
 
         binding.hoursRv.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.hoursRv.adapter = hourAdapter
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-//            scheduleViewModel.getFreeTime()
             binding.dateCalendar.text = "$dayOfMonth ${getMonthName(month)}"
-
             //месяцы до 10 в setOnDateChangeListener выдаются однозачными, меняем в двузначные
             var monthWithTwoNumbers = "${month + 1}"
-            if (monthWithTwoNumbers.length == 1){
+            if (monthWithTwoNumbers.length == 1) {
                 monthWithTwoNumbers = "0$monthWithTwoNumbers"
             }
             val selectedDate = "$year-${monthWithTwoNumbers}-$dayOfMonth"
+            scheduleViewModel.getFreeTime(doctorId, selectedDate)
             Log.i("schedule", "$selectedDate selected date")
         }
     }
@@ -68,7 +73,6 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         scheduleViewModel.freeTime.observe(requireActivity()) {
             hourAdapter.setList(it.free_times)
             Log.i("schedule", "${it.free_times}")
-
         }
         scheduleViewModel.errorMessage.observe(requireActivity()) {
             Log.i("schedule", it)
@@ -138,17 +142,6 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         val view = layoutInflater.inflate(R.layout.form, null)
         val close = view.findViewById<ImageView>(R.id.closeButton)
         val save = view.findViewById<Button>(R.id.saveButton)
-        val spinner = view.findViewById<Spinner>(R.id.spinner)
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.type_array,
-            R.layout.spinner_list
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(R.layout.spinner_list)
-            // Apply the adapter to the spinner
-            spinner.adapter = adapter
-        }
         formBuilder.setView(view)
         close.setOnClickListener {
             formBuilder.dismiss()

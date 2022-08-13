@@ -16,7 +16,7 @@ interface MedApi {
     @POST("api/get-free-time/")
     suspend fun getFreeTime(
         @Field("doctor") doctor: Int,
-        @Field("date") date: Date
+        @Field("date") date: String
     ): Response<TimeSlot>
 
     @GET("api/handbook/{id}/")
@@ -28,11 +28,6 @@ interface MedApi {
     suspend fun getUserById(
         @Path("id") id: Int?
     ): Response<User>
-
-    @GET("api/doctor/{id}/")
-    suspend fun getDoctorById(
-        @Path("id") id: Int?
-    ): Response<Doctor>
 
     @GET("api/article/")
     suspend fun getArticles(): Response<Array<Article>>

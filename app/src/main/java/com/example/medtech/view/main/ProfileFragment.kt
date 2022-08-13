@@ -16,6 +16,7 @@ import com.auth0.android.jwt.JWT
 import com.bumptech.glide.Glide
 import com.example.medtech.R
 import com.example.medtech.data.UserPreferences
+import com.example.medtech.data.model.Doctor
 import com.example.medtech.databinding.FragmentProfileBinding
 import com.example.medtech.view.auth.AuthorizationFragmentDirections
 import com.example.medtech.viewmodel.AuthViewModel
@@ -28,16 +29,15 @@ class ProfileFragment : Fragment() {
     private val binding
         get() = _binding!!
     private val userViewModel by viewModel<UserViewModel>()
-    lateinit var sharedPreferences: UserPreferences
-    private var doctorID = 1
-
+    private lateinit var sharedPreferences: UserPreferences
+    private lateinit var doctor: Doctor
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
-        sharedPreferences =  UserPreferences(requireContext())
+        sharedPreferences = UserPreferences(requireContext())
         userViewModel.getProfileById(sharedPreferences.fetchUserId())
         Log.i("profile", sharedPreferences.fetchUserId().toString())
         setupObservers()
@@ -47,7 +47,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.myDocButton.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToDoctorFragment(doctorID)
+            val action = ProfileFragmentDirections.actionProfileFragmentToDoctorFragment(doctor)
             findNavController().navigate(action)
         }
         binding.callHospital.setOnClickListener {
@@ -55,22 +55,27 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
         binding.wa.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
-                        "https://api.whatsapp.com/send?phone=996700070878 Number&text=Здравствуйте!")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW, Uri.parse(
+                        "https://api.whatsapp.com/send?phone=996700070878 Number&text=Здравствуйте!"
+                    )
+                )
+            )
         }
     }
 
     private fun setupObservers() {
         userViewModel.user.observe(requireActivity()) {
-            with(binding){
+            with(binding) {
                 idNumber.text = it.inn
                 name.text = "${it.first_name} ${it.last_name}"
                 dateOfBirth.text = it.birth_date
                 address.text = it.address
-//                age.text = "${it.age} лет"
+                age.text = "${it.age} лет"
                 phoneNumber.text = it.phone
-                if(it.image != null) Glide.with(requireContext()).load(it.image).into(image)
-                doctorID = it.doctor_field
+                if (it.image != null) Glide.with(requireContext()).load(it.image).into(image)
+                doctor = it.doctor_field
             }
         }
         userViewModel.errorMessage.observe(requireActivity()) {

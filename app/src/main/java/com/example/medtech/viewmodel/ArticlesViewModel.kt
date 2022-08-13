@@ -15,12 +15,16 @@ class ArticlesViewModel  (private val repository: InfoRepository): ViewModel(), 
 
     fun getArticles() {
         viewModelScope.launch {
-            val response = repository.getArticles()
-            if (response.isSuccessful) {
-                articles.postValue(response.body())
-            }
-            else{
-                errorMessage.postValue(response.errorBody().toString())
+//            showLoading(true)
+            try {
+                val response = repository.getArticles()
+                if (response.isSuccessful) {
+                    articles.postValue(response.body())
+                }
+            } catch (e: Exception) {
+                errorMessage.postValue(e.message)
+            } finally {
+//                showLoading(false)
             }
         }
     }

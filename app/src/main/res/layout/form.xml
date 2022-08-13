@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Тип встречи"
+        android:text="Причина встречи"
         app:layout_constraintStart_toStartOf="@+id/doctorName"
         app:layout_constraintTop_toBottomOf="@+id/doctorName" />
 
@@ -55,10 +55,9 @@
         style="@style/tiny_text_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Вопрос/проблема"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="221dp" />
 
     <TextView
         android:id="@+id/doctorName"
@@ -74,19 +73,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        style="@style/tiny_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center_vertical"
-        android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <EditText
         android:id="@+id/additionalMessage"
@@ -117,14 +103,20 @@
         app:layout_constraintStart_toStartOf="@+id/additionalMessage"
         app:layout_constraintTop_toBottomOf="@+id/additionalMessage" />
 
-    <View
-        android:id="@+id/view7"
+    <EditText
+        android:id="@+id/editTextReason"
+        style="@style/tiny_text"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/light_gray_outline"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toTopOf="@+id/spinner" />
+        android:ems="10"
+        android:hint="Причина"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

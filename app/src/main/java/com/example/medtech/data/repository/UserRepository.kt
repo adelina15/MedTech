@@ -9,8 +9,4 @@ class UserRepository constructor (private val medApi: MedApi) {
     suspend fun getUserById(id: Int): Response<User> {
         return medApi.getUserById(id)
     }
-
-    suspend fun getDoctorById(id: Int): Response<Doctor> {
-        return medApi.getDoctorById(id)
-    }
 }

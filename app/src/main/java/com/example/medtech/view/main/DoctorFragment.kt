@@ -34,9 +34,9 @@ class DoctorFragment : Fragment() {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_doctor, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.getDoctorById(args.doctorId)
         setupObservers()
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_arrow)
@@ -45,22 +45,22 @@ class DoctorFragment : Fragment() {
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
     private fun setupObservers() {
-        userViewModel.doctor.observe(requireActivity()) {
-            with(binding){
-                experience.text = it.work_experience
-                doctorName.text = "${it.first_name} ${it.last_name}"
-                education.text = it.education
-                dipoms.text = it.achievements
-                if(it.image != null) Glide.with(requireContext()).load(it.image).into(doctorImage)
-            }
+        with(binding) {
+            experience.text = args.doctor.work_experience
+            doctorName.text = "${args.doctor.first_name} ${args.doctor.last_name}"
+            education.text = args.doctor.education
+            dipoms.text = args.doctor.achievements
+            if (args.doctor.image != null) Glide.with(requireContext()).load(args.doctor.image).into(doctorImage)
         }
         userViewModel.errorMessage.observe(requireActivity()) {
-            Log.i("profile", it)
+            Log.i("scheduleError", it)
             Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
         }
     }

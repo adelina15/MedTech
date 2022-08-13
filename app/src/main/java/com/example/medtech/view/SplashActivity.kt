@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
             window.statusBarColor = Color.WHITE
         }
 
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
         // close this activity
         finish()
     }

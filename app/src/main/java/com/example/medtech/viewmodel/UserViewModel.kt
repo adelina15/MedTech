@@ -28,16 +28,4 @@ class UserViewModel (private val repository: UserRepository): ViewModel(),
         }
     }
 
-    fun getDoctorById(id: Int) {
-        viewModelScope.launch {
-            val response = repository.getDoctorById(id)
-            if (response.isSuccessful) {
-                doctor.postValue(response.body())
-            }
-            else{
-                errorMessage.postValue(response.errorBody().toString())
-            }
-        }
-    }
-
 }
