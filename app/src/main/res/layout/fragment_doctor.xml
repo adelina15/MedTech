@@ -150,10 +150,12 @@
                         <TextView
                             android:id="@+id/experience"
                             style="@style/smaller_main_gray"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
+                            android:layout_marginEnd="10dp"
                             android:text="Медицинский стаж - более  34 лет"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView10"
                             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 

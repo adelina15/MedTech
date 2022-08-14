@@ -6,5 +6,5 @@ data class TimeSlot(
     val booked_times: List<Time>,
     val date: String,
     val doctor: String,
-    val free_times: List<Time>?
+    val free_times: List<Time>
 )

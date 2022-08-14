@@ -6,7 +6,7 @@ import com.example.medtech.data.model.BabyItem
 import com.example.medtech.data.model.Token
 import retrofit2.Response
 
-class AuthRepository constructor (private val medApi: MedApi) {
+class AuthRepository (private val medApi: MedApi) {
     suspend fun getToken(number: String): Response<Token> {
         return medApi.getToken(number)
     }

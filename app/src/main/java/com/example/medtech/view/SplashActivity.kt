@@ -29,9 +29,9 @@ class SplashActivity : AppCompatActivity() {
             window.statusBarColor = Color.WHITE
         }
 //        if (FirebaseAuth.getInstance() == null){
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
 //        } else startActivity(Intent(this, MainActivity::class.java))
-        // close this activity
+//         close this activity
         finish()
     }
 }

@@ -16,7 +16,7 @@ class ChecklistAdapter(): RecyclerView.Adapter<ChecklistAdapter.ChecklistViewHol
     private var list = listOf<Checklist>()
     fun setList(list: MutableList<Checklist>) {
         this.list = list
-//        notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
     class ChecklistViewHolder(item: View) : RecyclerView.ViewHolder(item) {

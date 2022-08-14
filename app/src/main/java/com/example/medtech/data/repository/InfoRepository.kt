@@ -5,7 +5,7 @@ import com.example.medtech.data.model.Article
 import com.example.medtech.data.model.Faq
 import retrofit2.Response
 
-class InfoRepository constructor (private val medApi: MedApi) {
+class InfoRepository (private val medApi: MedApi) {
     suspend fun getArticles(): Response<Array<Article>> {
         return medApi.getArticles()
     }

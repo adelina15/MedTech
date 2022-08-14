@@ -34,4 +34,8 @@ class UserPreferences (context: Context) {
     fun fetchUserId():Int {
         return prefs.getInt(Constants.TOKEN, 1)
     }
+
+    fun fetchDoctorName(): String? {
+        return prefs.getString(Constants.DOCTOR_NAME, "Имя доктора")
+    }
 }

@@ -17,6 +17,7 @@ import com.example.medtech.databinding.FragmentScheduleBinding
 import com.example.medtech.utils.Delegates
 import com.example.medtech.view.adapter.HoursAdapter
 import com.example.medtech.viewmodel.ScheduleViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,23 +25,22 @@ import java.util.*
 
 class ScheduleFragment : Fragment(), Delegates.HourClicked {
 
-    private var _binding: FragmentScheduleBinding? = null
-    private val binding
-        get() = _binding!!
+    private lateinit var binding: FragmentScheduleBinding
 
-    private lateinit var sharedPreferences: UserPreferences
+    private val sharedPreferences by inject<UserPreferences>()
     private val hourAdapter by lazy { HoursAdapter(this) }
     private val scheduleViewModel by viewModel<ScheduleViewModel>()
-    private var doctorId = 4
+    private var doctorId = 1
+    private var patientId = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
-        sharedPreferences = UserPreferences(requireContext())
-//        doctorId = sharedPreferences.fetchDoctorId()
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
+        doctorId = sharedPreferences.fetchDoctorId()
+        patientId = sharedPreferences.fetchUserId()
         return binding.root
     }
 
@@ -49,6 +49,7 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         val date = Calendar.getInstance().time
         val dateToday = formatter.format(date)
+        scheduleViewModel.setDate(dateToday)
         scheduleViewModel.getFreeTime(doctorId, dateToday)
         Log.i("schedule", "${scheduleViewModel.getFreeTime(doctorId, dateToday)} getfreetime")
         setupObservers()
@@ -72,15 +73,15 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
 
     private fun setupObservers() {
         scheduleViewModel.freeTime.observe(requireActivity()) {
-            if (it.free_times != null){
+            if (it.free_times.isNotEmpty()){
                 hourAdapter.setList(it.free_times)
-                Log.i("schedule", "${it.free_times}")
             }
-            else binding.noAvailableTime.visibility = View.VISIBLE
+            else showNoAvailableTime()
         }
         scheduleViewModel.errorMessage.observe(requireActivity()) {
-            Log.i("schedule", it)
-            Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+            Log.i("schedule", it.response)
+            binding.noAvailableTime.text = it.response
+            showNoAvailableTime()
         }
     }
 
@@ -100,11 +101,6 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
             11 -> "декабря"
             else -> ""
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onItemClick(hourId: Int) {
@@ -144,20 +140,19 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         //custom AlertDialog
 
         val formBinding: FormBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(
-                context
-            ), R.layout.form, null, false
+            LayoutInflater.from(context), R.layout.form, null, false
         )
         val formBuilder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom).create()
         val close = formBinding.closeButton
         val save = formBinding.saveButton
-        formBuilder.setView(binding.root)
+        formBuilder.setView(formBinding.root)
+        formBinding.doctorName.text = sharedPreferences.fetchDoctorName()
         close.setOnClickListener {
             formBuilder.dismiss()
         }
         save.setOnClickListener {
-            scheduleViewModel.makeAppointment(formBinding.additionalMessage.text.toString(), formBinding.editTextReason.text.toString(), hourId)
-            Toast.makeText(requireContext(), "Вы успешно записались", Toast.LENGTH_SHORT).show()
+            scheduleViewModel.makeAppointment(formBinding.additionalMessage.text.toString(), formBinding.editTextReason.text.toString(), hourId, doctorId, patientId)
+            showSuccess()
             binding.appointmentInfo.visibility = View.VISIBLE
             binding.chooseButton.text = "Вы записаны"
             formBuilder.dismiss()
@@ -165,4 +160,23 @@ class ScheduleFragment : Fragment(), Delegates.HourClicked {
         formBuilder.show()
     }
 
+    private fun showSuccess() {
+        //custom AlertDialog
+        val successBuilder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom).create()
+        val view = layoutInflater.inflate(R.layout.success_record, null)
+        successBuilder.setView(view)
+        successBuilder.show()
+
+        //To make AlertDialog smaller in width
+        val width = (resources.displayMetrics.widthPixels * 0.70).toInt()
+        // Get the current app screen width and height
+        val window: Window? = successBuilder.window
+        window!!.setLayout(width, WindowManager.LayoutParams.WRAP_CONTENT)
+    }
+
+    private fun showNoAvailableTime(){
+        binding.noAvailableTime.visibility = View.VISIBLE
+        binding.noChoiceButton.visibility = View.VISIBLE
+        binding.chooseButton.visibility = View.GONE
+    }
 }

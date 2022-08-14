@@ -1,5 +1,6 @@
 package com.example.medtech.koin
 
+import com.example.medtech.data.UserPreferences
 import com.example.medtech.data.api.MedApi
 import com.example.medtech.data.repository.AuthRepository
 import com.example.medtech.data.repository.InfoRepository
@@ -9,6 +10,7 @@ import com.example.medtech.utils.Constants
 import com.example.medtech.viewmodel.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -20,6 +22,7 @@ val retrofitModule = module {
     single { getOkHttp() }
     single { getRetrofitInstance(okHttpClient = get()) }
     single { getMedApi(retrofit = get()) }
+    single { UserPreferences(androidApplication()) }
     factory { AuthRepository(medApi = get()) }
     factory { UserRepository(medApi = get()) }
     factory { InfoRepository(medApi = get()) }

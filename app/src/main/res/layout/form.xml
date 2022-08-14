@@ -57,9 +57,10 @@
             style="@style/tiny_text_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Вопрос/проблема"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="221dp" />
+            app:layout_constraintStart_toStartOf="@+id/editTextReason"
+            app:layout_constraintTop_toBottomOf="@+id/editTextReason" />
 
         <TextView
             android:id="@+id/doctorName"

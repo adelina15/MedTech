@@ -20,6 +20,7 @@ import com.example.medtech.databinding.FragmentHomeBinding
 import com.example.medtech.viewmodel.AuthViewModel
 import com.example.medtech.viewmodel.BabyViewModel
 import com.example.medtech.viewmodel.UserViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), Delegates.WeekClicked {
@@ -27,7 +28,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     private val binding
         get() = _binding!!
     private val weekAdapter by lazy { WeeksAdapter(this) }
-    private lateinit var sharedPreferences: UserPreferences
+    private val sharedPreferences by inject<UserPreferences>()
     private val babyViewModel by viewModel<BabyViewModel>()
     private val userViewModel by viewModel<UserViewModel>()
     private val itemList = mutableListOf<Week>()
@@ -40,7 +41,6 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        sharedPreferences = UserPreferences(requireContext())
         userViewModel.getProfileById(sharedPreferences.fetchUserId())
         setupObservers()
         return binding.root
@@ -49,7 +49,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showProgressBar()
-        babyViewModel.getBabyById(1)
+        babyViewModel.getBabyById(week)
         babyViewModel.baby.observe(requireActivity()) {
             hideProgressBar()
             babyItem = it
@@ -110,6 +110,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
             }
         }
         weekAdapter.setList(itemList)
+        weekAdapter.setCurrentWeek(week)
     }
 
     override fun onDestroyView() {

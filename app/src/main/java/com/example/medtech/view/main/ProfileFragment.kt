@@ -21,6 +21,7 @@ import com.example.medtech.databinding.FragmentProfileBinding
 import com.example.medtech.view.auth.AuthorizationFragmentDirections
 import com.example.medtech.viewmodel.AuthViewModel
 import com.example.medtech.viewmodel.UserViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
@@ -29,15 +30,15 @@ class ProfileFragment : Fragment() {
     private val binding
         get() = _binding!!
     private val userViewModel by viewModel<UserViewModel>()
-    private lateinit var sharedPreferences: UserPreferences
+    private val sharedPreferences by inject<UserPreferences>()
     private lateinit var doctor: Doctor
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
-        sharedPreferences = UserPreferences(requireContext())
         userViewModel.getProfileById(sharedPreferences.fetchUserId())
         Log.i("profile", sharedPreferences.fetchUserId().toString())
         setupObservers()
@@ -75,7 +76,7 @@ class ProfileFragment : Fragment() {
                 age.text = "${it.age} лет"
                 phoneNumber.text = it.phone
                 if (it.image != null) Glide.with(requireContext()).load(it.image).into(image)
-//                doctor = it.doctor_field
+                doctor = it.doctor_field
             }
         }
         userViewModel.errorMessage.observe(requireActivity()) {

@@ -150,7 +150,7 @@ class CodeFragment : Fragment() {
     private fun startTimer() {
         object : CountDownTimer(60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                binding.timer.text = "Отправить код повторно можно \nчерез 00: ${millisUntilFinished / 1000} секунд"
+                binding.timer.text = "Отправить код повторно можно \nчерез 00:${millisUntilFinished / 1000} секунд"
             }
 
             override fun onFinish() {

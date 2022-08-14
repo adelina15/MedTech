@@ -49,8 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            tools:layout_marginTop="-300dp">
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -279,29 +278,68 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:indeterminate="true"
-                    app:indicatorColor = "@color/dark_green"
                     android:translationZ="90dp"
+                    app:indicatorColor="@color/dark_green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.469"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.26" />
 
-                <Button
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/foodButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button"
-                    app:layout_constraintStart_toStartOf="@+id/cardView1"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView1" />
-
-                <Button
-                    android:id="@+id/weightButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="15dp"
+                    android:clickable="true"
+                    android:scaleType="centerCrop"
+                    android:tint="#AB000000"
                     app:layout_constraintEnd_toEndOf="@+id/cardView1"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView1" />
+                    app:layout_constraintStart_toStartOf="@+id/cardView1"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView1"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+                    app:srcCompat="@drawable/food" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/weightButton"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:clickable="false"
+                    android:scaleType="centerCrop"
+                    android:tint="#AB000000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView1"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/cardView1"
+                    app:layout_constraintTop_toBottomOf="@+id/foodButton"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+                    app:srcCompat="@drawable/weight" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    style="@style/button_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/food"
+                    app:layout_constraintBottom_toBottomOf="@+id/foodButton"
+                    app:layout_constraintEnd_toEndOf="@+id/foodButton"
+                    app:layout_constraintStart_toStartOf="@+id/foodButton"
+                    app:layout_constraintTop_toTopOf="@+id/foodButton" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    style="@style/button_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weight"
+                    app:layout_constraintBottom_toBottomOf="@+id/weightButton"
+                    app:layout_constraintEnd_toEndOf="@+id/weightButton"
+                    app:layout_constraintStart_toStartOf="@+id/weightButton"
+                    app:layout_constraintTop_toTopOf="@+id/weightButton" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 

@@ -22,10 +22,7 @@ interface MedApi {
     @FormUrlEncoded
     @POST("api/appointment/")
     suspend fun appointment(
-        @Field("record") record: String,
-        @Field("description") description: String,
-        @Field("date") date: String,
-        @Field("time_slots") timeSlots: Int,
+        @Body appointment: Appointment
     )
 
     @GET("api/handbook/{id}/")
