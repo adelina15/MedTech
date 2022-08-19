@@ -5,25 +5,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medtech.R
+import com.example.medtech.data.model.Answer
 import com.example.medtech.data.model.Checklist
 import com.example.medtech.data.model.Faq
+import com.example.medtech.data.model.Question
 import com.example.medtech.databinding.ChecklistItemBinding
 import com.example.medtech.databinding.QuestionsBinding
 import com.example.medtech.utils.Delegates
 
 class ChecklistAdapter(): RecyclerView.Adapter<ChecklistAdapter.ChecklistViewHolder>() {
 
-    private var list = listOf<Checklist>()
-    fun setList(list: MutableList<Checklist>) {
-        this.list = list
+    private var answerList = listOf<Answer>()
+    fun setAnswerList(list: List<Answer>) {
+        answerList = list
         notifyDataSetChanged()
     }
 
+    private var questionList = listOf<Question>()
+    fun setQuestionList(list: List<Question>) {
+        questionList = list
+        notifyDataSetChanged()
+    }
+
+
     class ChecklistViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = ChecklistItemBinding.bind(item)
-        fun bind(checklist: Checklist) = with(binding) {
-            checklistQuestion.text = checklist.question
-            badAnswer.text = checklist.comment
+        fun bind(question: Question, answer: Answer) = with(binding) {
+            checklistQuestion.text = question.name
+            badAnswer.text = answer.name
         }
     }
 
@@ -33,8 +42,8 @@ class ChecklistAdapter(): RecyclerView.Adapter<ChecklistAdapter.ChecklistViewHol
     }
 
     override fun onBindViewHolder(holder: ChecklistViewHolder, position: Int) {
-        holder.bind(list[position])
-        val isOk: Boolean = list[position].isOk
+        holder.bind(questionList[position], answerList[position])
+        val isOk: Boolean = answerList[position].is_ok
         with(holder.binding){
             if (!isOk){
                 badAnswer.visibility = View.VISIBLE
@@ -44,7 +53,7 @@ class ChecklistAdapter(): RecyclerView.Adapter<ChecklistAdapter.ChecklistViewHol
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return answerList.size
     }
 
 }

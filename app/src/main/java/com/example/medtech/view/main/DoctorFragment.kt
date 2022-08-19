@@ -57,6 +57,7 @@ class DoctorFragment : Fragment() {
             doctorName.text = "${args.doctor.first_name} ${args.doctor.last_name}"
             education.text = args.doctor.education
             dipoms.text = args.doctor.achievements
+            resign.text = args.doctor.resign
             if (args.doctor.image != null) Glide.with(requireContext()).load(args.doctor.image).into(doctorImage)
         }
         userViewModel.errorMessage.observe(requireActivity()) {

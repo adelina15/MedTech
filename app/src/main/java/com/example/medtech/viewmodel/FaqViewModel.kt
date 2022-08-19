@@ -10,12 +10,12 @@ class FaqViewModel(private val repository: InfoRepository): ViewModel(), Default
     val faq = MutableLiveData<Array<Faq>>()
     val errorMessage = MutableLiveData<String>()
 
-    override fun onCreate(owner: LifecycleOwner) {
-        super.onCreate(owner)
-        getFaq()
-    }
+//    override fun onCreate(owner: LifecycleOwner) {
+//        super.onCreate(owner)
+//        getFaq()
+//    }
 
-    private fun getFaq() {
+    fun getFaq() {
         viewModelScope.launch {
             val response = repository.getFaq()
             if (response.isSuccessful) {

@@ -22,7 +22,13 @@ interface MedApi {
     @FormUrlEncoded
     @POST("api/appointment/")
     suspend fun appointment(
-        @Body appointment: Appointment
+//        @Body appointment: Appointment
+        @Field("record") record: String,
+        @Field("description") description: String,
+        @Field("date") date: String,
+        @Field("patient") patient: Int,
+        @Field("doctor") doctor: Int,
+        @Field("time_slots") time_slots: Int,
     )
 
     @GET("api/handbook/{id}/")
@@ -34,6 +40,12 @@ interface MedApi {
     suspend fun getUserById(
         @Path("id") id: Int?
     ): Response<User>
+
+    @GET("api/check-list/")
+    suspend fun getChecklist(
+        @Query("patient") id: Int?,
+        @Query("month") month: Int?,
+    ): Response<ArrayList<Checklist>>
 
     @GET("api/article/")
     suspend fun getArticles(): Response<Array<Article>>

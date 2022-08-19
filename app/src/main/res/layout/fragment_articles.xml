@@ -56,12 +56,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
+        <com.example.medtech.utils.loader.PulseLoader
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            app:indicatorColor = "@color/dark_green"
+            app:pulse_LineThickness="3dp"
+            app:pulse_normalIncrementalValue="4.0"
+            app:pulse_pulseColor="@color/dark_green"
+            app:pulse_pulseIncrementalValue="8.0"
+            app:pulse_sideLength="30dp"
             android:translationZ="90dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

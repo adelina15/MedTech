@@ -13,7 +13,7 @@ class ScheduleRepository (private val medApi: MedApi) {
     }
 
     suspend fun makeAppointment(appointment: Appointment) {
-//        return medApi.appointment(appointment.record, appointment.description, appointment.patient, appointment.doctor, appointment.date, appointment.time_slots )
-        return medApi.appointment(appointment)
+        return medApi.appointment( appointment.record, appointment.description, appointment.date, appointment.doctor, appointment.patient, appointment.time_slots )
+//        return medApi.appointment(appointment)
     }
 }

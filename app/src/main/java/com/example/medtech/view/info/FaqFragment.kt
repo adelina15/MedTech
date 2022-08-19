@@ -35,6 +35,7 @@ class FaqFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        faqViewModel.getFaq()
         setupObservers()
         showProgressBar()
         with(binding.toolbar) {

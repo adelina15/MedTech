@@ -5,21 +5,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.medtech.data.model.BabyItem
-import com.example.medtech.data.repository.AuthRepository
+import com.example.medtech.data.model.Checklist
 import com.example.medtech.data.repository.MainRepository
 import kotlinx.coroutines.launch
 
-class BabyViewModel (private val repository: MainRepository): ViewModel(),
+class ChecklistViewModel (private val repository: MainRepository): ViewModel(),
     DefaultLifecycleObserver {
 
-    val baby = MutableLiveData<BabyItem>()
+    val checklist = MutableLiveData<ArrayList<Checklist>>()
     val errorMessage = MutableLiveData<String>()
 
-    fun getBabyById(id: Int) {
+    fun getChecklist(id: Int, month: Int) {
         viewModelScope.launch {
-            val response = repository.getBabyByWeek(id)
+            val response = repository.getChecklist(id, month)
             if (response.isSuccessful) {
-                baby.postValue(response.body())
+                checklist.postValue(response.body())
             }
             else{
                 errorMessage.postValue(response.errorBody().toString())

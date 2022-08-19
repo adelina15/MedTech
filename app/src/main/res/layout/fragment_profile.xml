@@ -58,7 +58,6 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
-
                 <TextView
                     android:id="@+id/name"
                     style="@style/smaller_main_gray"
@@ -67,7 +66,7 @@
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="26dp"
-                    android:text="Акматова Айнагуль Мамазакировна"
+                    android:text=" "
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/editButton"
                     app:layout_constraintStart_toEndOf="@+id/imageCard"
@@ -88,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="24 неделя"
+                    android:text="   неделя"
                     app:layout_constraintStart_toStartOf="@+id/name"
                     app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -108,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="8956686045860"
+                    android:text=" "
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toTopOf="@+id/textView15" />
 
@@ -176,10 +175,20 @@
                             style="@style/tiny_text_green"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
                             android:text="ВОЗРАСТ:"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.42"
                             app:layout_constraintStart_toEndOf="@+id/textView18"
                             app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+                        <TextView
+                            android:id="@+id/textView31"
+                            style="@style/tiny_text_green"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ПДР:"
+                            app:layout_constraintStart_toStartOf="@+id/age"
+                            app:layout_constraintTop_toTopOf="@+id/textView25" />
 
                         <TextView
                             android:id="@+id/dateOfBirth"
@@ -187,7 +196,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="21. 09. 1995'"
+                            android:text=" "
                             app:layout_constraintStart_toStartOf="@+id/textView18"
                             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -198,7 +207,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:layout_marginBottom="16dp"
-                            android:text="0702 000000"
+                            android:text=" "
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView24"
                             app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -209,7 +218,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="г.Бишкек"
+                            android:text=" "
                             app:layout_constraintStart_toStartOf="@+id/textView25"
                             app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -219,9 +228,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="26 лет"
+                            android:text=" "
                             app:layout_constraintStart_toStartOf="@+id/textView26"
                             app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+                        <TextView
+                            android:id="@+id/pdr"
+                            style="@style/black_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text=" "
+                            app:layout_constraintStart_toStartOf="@+id/textView31"
+                            app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -320,6 +339,22 @@
                     app:layout_constraintBottom_toBottomOf="@+id/wa"
                     app:layout_constraintStart_toEndOf="@+id/waImg"
                     app:layout_constraintTop_toTopOf="@+id/wa" />
+
+                <com.example.medtech.utils.loader.PulseLoader
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:translationZ="90dp"
+                    app:pulse_LineThickness="3dp"
+                    app:pulse_normalIncrementalValue="4.0"
+                    app:pulse_pulseColor="@color/dark_green"
+                    app:pulse_pulseIncrementalValue="8.0"
+                    app:pulse_sideLength="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

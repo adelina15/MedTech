@@ -24,30 +24,29 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), Delegates.WeekClicked {
-    private var _binding: FragmentHomeBinding? = null
-    private val binding
-        get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
+
     private val weekAdapter by lazy { WeeksAdapter(this) }
     private val sharedPreferences by inject<UserPreferences>()
     private val babyViewModel by viewModel<BabyViewModel>()
     private val userViewModel by viewModel<UserViewModel>()
     private val itemList = mutableListOf<Week>()
     private var babyItem: BabyItem? = null
-    private var week = 1
+    private var week = 7
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        userViewModel.getProfileById(sharedPreferences.fetchUserId())
-        setupObservers()
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userViewModel.getProfileById(sharedPreferences.fetchUserId())
+        setupObservers()
         showProgressBar()
         babyViewModel.getBabyById(week)
         babyViewModel.baby.observe(requireActivity()) {
@@ -58,7 +57,7 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
                     Glide.with(requireContext()).load(babyItem?.fruit_img).into(fruit)
                     Glide.with(requireContext()).load(babyItem?.baby_img).into(baby)
                     description.text = babyItem?.title
-                    dateCalendar.text = babyItem?.dates_of_advices
+                    dateCalendar.text = "${babyItem?.week} неделя"
                     weight.text = babyItem?.weight
                     height.text = babyItem?.height
                     advice.text = babyItem?.advices
@@ -113,13 +112,8 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
         weekAdapter.setCurrentWeek(week)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onItemClick(week: Week) {
-        getWeek(week)
+        babyViewModel.getBabyById(week.week)
     }
 
     private fun hideProgressBar() {
@@ -133,6 +127,8 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     private fun setupObservers() {
         userViewModel.user.observe(requireActivity()) {
             week = it.week_of_pregnancy
+            Log.i("weekPregnancy", it.week_of_pregnancy.toString())
+
             sharedPreferences.saveDoctorId(it.doctor_field.id)
             sharedPreferences.saveDoctorName("${it.doctor_field.last_name} ${it.doctor_field.first_name}")
         }
@@ -143,14 +139,14 @@ class HomeFragment : Fragment(), Delegates.WeekClicked {
     }
 
     //only for testing, remove after full connection
-    private fun getWeek(week: Week) {
-        when (week.week) {
-            5 -> babyViewModel.getBabyById(1)
-            7 -> babyViewModel.getBabyById(2)
-            10 -> babyViewModel.getBabyById(5)
-            else -> babyViewModel.getBabyById(5)
-        }
-    }
+//    private fun getWeek(week: Week) {
+//        when (week.week) {
+//            5 -> babyViewModel.getBabyById(1)
+//            7 -> babyViewModel.getBabyById(2)
+//            10 -> babyViewModel.getBabyById(5)
+//            else -> babyViewModel.getBabyById(5)
+//        }
+//    }
 
     private fun showImportance() {
         //custom AlertDialog

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="PulseLoader">
+        <attr name="pulse_LineThickness" format="dimension" />
+        <attr name="pulse_sideLength" format="dimension" />
+
+        <attr name="pulse_normalIncrementalValue" format="float" />
+        <attr name="pulse_pulseIncrementalValue" format="float" />
+
+        <attr name="pulse_pulseColor" format="color" />
+    </declare-styleable>
     <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
         <item name="cornerSize">10%</item>
     </style>

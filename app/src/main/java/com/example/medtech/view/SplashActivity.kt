@@ -28,10 +28,9 @@ class SplashActivity : AppCompatActivity() {
             wic.isAppearanceLightStatusBars = true
             window.statusBarColor = Color.WHITE
         }
-//        if (FirebaseAuth.getInstance() == null){
-            startActivity(Intent(this, MainActivity::class.java))
+//        if (FirebaseAuth.getInstance() == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
 //        } else startActivity(Intent(this, MainActivity::class.java))
-//         close this activity
         finish()
     }
 }

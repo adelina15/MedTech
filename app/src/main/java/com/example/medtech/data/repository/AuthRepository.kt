@@ -10,9 +10,4 @@ class AuthRepository (private val medApi: MedApi) {
     suspend fun getToken(number: String): Response<Token> {
         return medApi.getToken(number)
     }
-
-    suspend fun getBabyByWeek(id: Int): Response<BabyItem>{
-        Log.d("authRepo", medApi.getBabyByWeek(id ).toString())
-        return medApi.getBabyByWeek(id)
-    }
 }

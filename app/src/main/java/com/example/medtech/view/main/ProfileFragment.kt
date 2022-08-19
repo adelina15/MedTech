@@ -1,5 +1,6 @@
 package com.example.medtech.view.main
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -26,9 +27,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
-    private val binding
-        get() = _binding!!
+    private lateinit var binding: FragmentProfileBinding
     private val userViewModel by viewModel<UserViewModel>()
     private val sharedPreferences by inject<UserPreferences>()
     private lateinit var doctor: Doctor
@@ -38,10 +37,11 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         userViewModel.getProfileById(sharedPreferences.fetchUserId())
         Log.i("profile", sharedPreferences.fetchUserId().toString())
         setupObservers()
+        showProgressBar()
         return binding.root
     }
 
@@ -52,7 +52,7 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding.callHospital.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$+996123456"))
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:+996123456"))
             startActivity(intent)
         }
         binding.wa.setOnClickListener {
@@ -70,14 +70,17 @@ class ProfileFragment : Fragment() {
         userViewModel.user.observe(requireActivity()) {
             with(binding) {
                 idNumber.text = it.inn
+                week.text = "${it.week_of_pregnancy} неделя"
                 name.text = "${it.first_name} ${it.last_name}"
                 dateOfBirth.text = it.birth_date
                 address.text = it.address
                 age.text = "${it.age} лет"
                 phoneNumber.text = it.phone
-                if (it.image != null) Glide.with(requireContext()).load(it.image).into(image)
+                if (it.image != null) checkIfFragmentAttached{ Glide.with(requireContext()).load(it.image).into(image) }
                 doctor = it.doctor_field
+                pdr.text = it.approximate_date_of_pregnancy
             }
+            hideProgressBar()
         }
         userViewModel.errorMessage.observe(requireActivity()) {
             Log.i("profile", it)
@@ -85,9 +88,18 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    fun checkIfFragmentAttached(operation: Context.() -> Unit) {
+        if (isAdded && context != null) {
+            operation(requireContext())
+        }
     }
 
 }

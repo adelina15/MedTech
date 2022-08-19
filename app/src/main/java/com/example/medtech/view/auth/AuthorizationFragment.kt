@@ -72,5 +72,10 @@ class AuthorizationFragment : Fragment() {
 
     private fun getToken(number: String) {
         authViewModel.getToken(number)
+        showProgressBar()
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
     }
 }

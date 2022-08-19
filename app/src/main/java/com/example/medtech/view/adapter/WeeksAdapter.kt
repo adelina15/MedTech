@@ -2,6 +2,7 @@ package com.example.medtech.view.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import com.example.medtech.databinding.WeekBinding
 class WeeksAdapter(val weekClicked: Delegates.WeekClicked) :
     RecyclerView.Adapter<WeeksAdapter.WeekViewHolder>() {
 
-    private var week: Int = 1
+    private var week: Int = 7
     private var selectedItemPosition: Int = week - 1
     fun setCurrentWeek(week: Int) {
         this.week = week
@@ -62,11 +63,13 @@ class WeeksAdapter(val weekClicked: Delegates.WeekClicked) :
             holder.binding.cardView.strokeColor = R.color.black
             holder.binding.cardView.strokeWidth = 1
         }
-        //current week box should always be of different
+        //current week box should always be different
         if (list[position].week == week){
+            Log.i("weekPregnancy", "$week adapter if log")
             holder.binding.cardView.setCardBackgroundColor(Color.parseColor("#39B7CD"))
             holder.binding.weekNumber.setTextColor(Color.parseColor("#FFFFFFFF"))
         }
+        Log.i("weekPregnancy", "$week adapter")
     }
 
     override fun getItemCount(): Int {
